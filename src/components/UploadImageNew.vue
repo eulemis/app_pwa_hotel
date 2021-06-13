@@ -1,11 +1,11 @@
 <template>
 <b-container class="container">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12" style="margin-top: -85px;">
           
                 <h5 class="font" v-show="optionPayment" style="text-align:center;margin-top:5%">{{ $t("title_upload") }}</h5><br>   
                 <div v-show="optionPayment">
-                    <img style="width: 70%; height: 300px; margin-left: 15%"  v-show="Fondo"    class="img_services" v-if="imagePayment"  v-bind:src="imagePayment" alt="">
+                    <img style="width: 100%; height: 300px; margin-left: 3%"  v-show="Fondo"    class="img_services" v-if="imagePayment"  v-bind:src="imagePayment" alt="">
                     <img style="width: 100%; height: 300px; margin-top:-26%;"   v-show="Fondo"    class="img_services" v-else src="@/assets/add_img_web.svg" alt="">
                 </div>
             </div>
