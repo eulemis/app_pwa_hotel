@@ -45,15 +45,7 @@
     		</div>
     	</div>
     	<div v-if="id == 4" class="container-view">
-			<h1 class="salones">Salones y Terrazas</h1> 
-			<h2 class="title">Ubicación: Terraza del piso 8 y Salones del piso 5.<br>
-				<p style="padding-top: 3%">Previa reservación con nuestro equipo de Alimentos y Bebidas.</p>
-			</h2>
-			<div class="underline"></div>
-			<div>
-				<p class="p_text">LIDOTEL Centro Lido Caracas ofrece 1 terraza y 5 salas versátiles, cómodas y elegantes para cualquier tipo de eventos: Bodas, lanzamientos, showrooms, conferencias, reuniones de trabajo, congresos, entre otros. Todas las salas están equipadas con equipos de tecnología audiovisual y proporcionamos cualquier otro material de trabajo adicional que usted requiera. Además, nuestro Departamento de Alimentos y Bebidas ofrece una amplia variedad de menús para atender desayunos, almuerzos, cenas o coffee break.</p>
-				<p class="p_text"> 	<strong>Para mayor información comunicarse con nuestro departamento de Recepción a través de la extensión 10 o del WhatsApp 0424-2517807</strong></p>
-			</div>
+	
 				<salones></salones>
     	</div>
     	<div v-if="id == 5" class="container-view">
@@ -314,7 +306,7 @@ h2{
 @media only screen and (device-width : 375px) and (device-height : 812px) 
     and (-webkit-device-pixel-ratio : 3) {
         .salones{
-            margin-top: 200%;
+            margin-top: 225%;
             font-size:  28px;
         }
         .salones-select{
@@ -325,11 +317,5 @@ h2{
         }
 
     }
-	@media only screen and (device-width : 414px) and (device-height : 736px) 
-    and (-webkit-device-pixel-ratio : 3){
-	    .salones{
-            margin-top: 220%;
-            font-size:  28px;
-        }
-	}
+
 </style>
