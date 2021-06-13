@@ -1,7 +1,7 @@
 <template>
 <b-container class="container">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12" style="margin-top: -71px;">
                 <h5 class="font" style="text-align:center;margin-top:5%">{{ $t("title_identity") }}</h5><br>  
                  <img  v-show="view"   class="img_services" v-if="imagenIdentity"  v-bind:src="imagenIdentity" alt="">
                  <img style="width: 90%; height: 300px; margin-left:5%;" v-show="view"   class="img_services" v-else  src="@/assets/add_img_web.svg" alt="">
@@ -57,14 +57,14 @@
     <b-row v-if="imagenIdentity"  class="justify-content-center mt-5">
         <b-col style="text-align: center;margin-top: -27px;" cols="12" md="6" lg="6">
             <button style="width:60%" class="btn btn-success bt_submit" :disabled="file === null" @click="submitFile2()">
-                Submit
+                Enviar
             </button>
         </b-col>
     </b-row>
     <b-row v-else  class="justify-content-center mt-5">
-        <b-col style="text-align: center;margin-top: -27px;" cols="12" md="6" lg="6">
+        <b-col style="text-align: center;margin-top: -27px;margin-bottom:14%" cols="12" md="6" lg="6">
             <button style="width:60%" class="btn btn-success bt_submit" :disabled="file === null" @click="submitFile2()">
-                Submit
+                Enviar
             </button>
         </b-col>
     </b-row>

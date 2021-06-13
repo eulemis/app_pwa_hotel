@@ -29,7 +29,7 @@
         </b-col>
     </b-row>
     <b-row v-show="optionPayment" v-if="imagePayment"  class="justify-content-center mt-5">
-        <b-col style="text-align: center;margin-top:-26%;" cols="12" md="6" lg="6">
+        <b-col style="text-align: center" cols="12" md="6" lg="6">
             <button style="width:60%" v-if="!previewCamera" class="btn btn-primary bt_submit" @click="turnOnCamera()">
                 {{ $t("foto") }} <b-icon icon="camera" font-scale="1"></b-icon>
             </button><br>
@@ -43,7 +43,7 @@
         </b-col>
     </b-row>
         <b-row v-else  class="justify-content-center mt-5">
-        <b-col style="text-align: center;margin-top:-26%;" cols="12" md="6" lg="6">
+        <b-col style="text-align: center" cols="12" md="6" lg="6">
             <button style="width:60%" v-if="!previewCamera" class="btn btn-primary bt_submit" @click="turnOnCamera()">
                 {{ $t("foto") }} <b-icon icon="camera" font-scale="1"></b-icon>
             </button><br>
@@ -60,14 +60,14 @@
     <b-row v-show="optionPayment" v-if="imagePayment"  class="justify-content-center mt-5">
         <b-col style="text-align: center;margin-top: -27px;" cols="12" md="6" lg="6">
             <button style="width:60%" class="btn btn-success bt_submit" :disabled="file === null" @click="submitFile()">
-                Submit
+                Enviar
             </button>
         </b-col>
     </b-row>
     <b-row v-else  class="justify-content-center mt-5">
         <b-col style="text-align: center;margin-top: -27px;" cols="12" md="6" lg="6">
             <button style="width:60%" class="btn btn-success bt_submit" :disabled="file === null" @click="submitFile()">
-                Submit
+                Enviar
             </button>
         </b-col>
     </b-row>

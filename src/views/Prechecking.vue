@@ -238,9 +238,9 @@ div.content img {
         margin-top: 18%;
         padding: 9px;
     }
-    .img_huesped{
+   /* .img_huesped{
         margin-top: -21%;
-    }
+    }*/
     h5{
         margin-top: 10%;
     }
