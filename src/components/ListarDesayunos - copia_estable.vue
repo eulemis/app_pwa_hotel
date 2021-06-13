@@ -1,0 +1,1073 @@
+<template>
+  <div>
+    <loading
+      :active.sync="isLoading"
+      :can-cancel="true"
+      :is-full-page="fullPage">
+    </loading>
+    <div  class="baner">
+      <img
+        v-if="foodID == 1"
+  
+        class="img-fluid baner_principal"
+        src="@/assets/banner_desayuno.jpg"
+        alt=""
+      /> 
+
+      <img
+        v-else
+      
+        class="img-fluid baner_principal"
+        src="@/assets/almuerzo.jpg"
+        alt=""
+      />
+      <b-container>
+        <div class="button_badge">
+          	<p class="pedido">
+            	{{ $t("place") }}<br />
+            	{{ $t("order") }}
+          	</p>
+          	<button class="bt_top btt_1"  @click="showModal(0)" :disabled="!getSelectedFood.length > 0">
+            	{{ $t("see_order") }}
+            	<b-badge class="bt_left" variant="light">{{getSelectedFood.length}}</b-badge>
+          	</button>
+          	<button
+            class="bt_top"
+            :disabled="!getSelectedFood.length > 0"
+            @click="showModal(1)"
+          	>
+            {{ $t("confirm_order") }}
+          </button>
+        </div>
+      </b-container>
+    </div>
+    <main>
+      <b-container fluid style="margin-top: -100px">
+        <b-row>
+          <b-col
+            v-for="(food, index) in getFoodItems"
+            :key="index"
+            cols="12"
+            md="12"
+            lg="6"
+          >
+            <b-card
+              no-body
+              style="margin-bottom: 30px"
+              class="overflow-hidden shadow-card"
+            >
+              <b-row no-gutters>
+                <b-col  v-if="food.photo_food" sm="12" md="4">
+                  <b-card-img 
+                    :src="food.photo_food"
+                    alt=""
+                    class="image_card"
+                  ></b-card-img>
+                </b-col>
+                    <b-col  v-else sm="12" md="4">
+                        <b-card-img 
+               
+                    src="./img/imagen_simbolo.jpg"
+                    alt=""
+                    class="image_card"
+                  ></b-card-img>
+                </b-col>
+            
+                <b-col sm="12" md="5">
+                  <h4 class="title_card">{{ food.food }}</h4>
+                  <b-card-text class="description">
+                    {{ food.description }}
+                  </b-card-text>
+                </b-col>
+                <b-col sm="12" md="3">
+                  <div class="text">
+                    <div style="line-height: 150%">
+                      <p class="title_food">{{ $t("cost") }}</p>
+                      <p class="costo">${{ food.price }}</p>
+                    </div>
+
+                    <div class="cantidad">
+                      <label for="sb-inline" class="title_food">{{ $t("quantity") }} </label>
+                      <div class="contador">
+                        <b-button
+                          class="count"
+                          pill
+                          variant="outline-primary"
+                          @click="decrementItemFood(food.id)"
+                          >-</b-button
+                        >
+                        <p class="cant">
+                          {{ food.quantity }}
+                        </p>
+                        <b-button
+                          class="count"
+                          variant="outline-primary"
+                          @click="incrementItemFood(food.id)"
+                          >+</b-button
+                        >
+                      </div>
+                    </div>
+                    <div>
+                      <p class="title_food">Total:</p>
+                      <p class="costo">
+                        $ {{ food.quantity * food.price }}
+                      </p>
+                    </div>
+                  </div>
+                </b-col>
+                <div class="buton bt_lg">
+                  <b-button
+                    :disabled="!food.quantity > 0 ? true : false"
+                    @click="addComment(food)"
+                    class="bt_1"
+                    size="sm"
+                    >{{ $t("comment") }}</b-button>
+                  <b-button @click="show = !show" class="bt_2" size="sm">{{
+                    $t("add")
+                  }}</b-button>
+                </div>
+              </b-row>
+              <b-overlay :show="show" no-wrap></b-overlay>
+            </b-card>
+          </b-col>
+        </b-row>
+      </b-container>
+
+      <b-modal  class="commentModal" ref="commentModal"   title="Agregar comentario" hide-footer hide-header >
+        <h5 style="text-align: center;color:#94700a;text-transform: uppercase; font-family:'FonstFree'">  {{$t("comment_order")}}</h5><br>
+        <b-form-textarea
+          id="commentFood"
+          v-model="temporalComment"
+         
+          rows="3"
+          max-rows="4"
+        ></b-form-textarea>
+            <div class=" mt-5 buttonsFooter">
+              <b-button class="btn-modal" @click="setComment()">{{
+                $t("acept")
+              }}</b-button>
+         
+            </div>
+      </b-modal>
+      <b-modal class="notfood" ref="notfood"    hide-footer hide-header >
+        <h5 style="text-align: center;color:#94700a;text-transform: uppercase;">Notificación</h5><br>
+          <div class="mt-3">
+              <p  style="text-align: center;color:#94700a;text-transform: uppercase;">No contamos con disponibilidad </p>
+          </div>
+            <div class=" mt-5 buttonsFooter">
+              <b-button class="btn-modal" @click="back()">{{
+                $t("acept")
+              }}</b-button>
+         
+            </div>
+      </b-modal>
+    </main>
+
+    <b-modal  class="orderModal" ref="orderModal" hide-footer hide-header>
+      <div class="d-block text-center">
+        <h3 class="m_title" v-if="this.valor == 1">{{ $t("detail_order") }}</h3>
+        <h3 class="m_title" v-else>{{ $t("see_order") }}</h3>
+      </div>
+      <b-table
+        class="resumeTable"
+        hover
+        striped
+        responsive
+        :items="getSelectedFood"
+        :fields="fields"
+      >
+        <template v-if="getSelectedFood.length > 0" v-slot:custom-foot="data">
+          <tr>
+            <td style="font-weight: bold"></td>
+            <td style="text-align: left; font-weight: bold">Total =</td>
+            <td style="text-align: inherit; font-weight: bold" class="totalP">
+              ${{ totalItems }}
+            </td>
+          </tr>
+        </template>
+        <template v-slot:cell(food)="data">
+          {{ data.item.food }}
+        </template>
+           <template  v-slot:cell(quantity)="data">
+          {{ data.item.quantity }}
+        </template>
+        <template v-slot:cell(price)="data"> $ {{ data.item.price }}  </template>
+        <template  v-slot:cell()="data">
+          $ {{ data.item.price * data.item.quantity }} 
+        </template>
+        <template  v-slot:cell()="data">
+          $ {{ data.item.price * data.item.quantity }} 
+        </template>
+        <template v-slot:cell(action)="data">
+          <b-button
+            size="sm"
+            class="btn-trash"
+            @click="deleteSelection(data.item.id)"
+          >
+            <b-icon icon="trash" aria-hidden="true"></b-icon>
+          </b-button>
+
+        </template>
+      </b-table>
+      <div v-if="this.valor == 1" class="buttonsFooter">
+        <b-button class="btn-modal" @click="hideModal">{{
+          $t("return")
+        }}</b-button>
+        <b-button
+          class="btn-modal"
+          @click="confirmOrder(getSelectedFood, totalItems)"
+          >{{ $t("confirm_order") }}</b-button
+        >
+      </div>
+      <div v-else class="buttonsFooter">
+        <b-button class="btn-modal" @click="hideModal">{{
+          $t("return")
+        }}</b-button>
+      </div>
+    </b-modal>
+    <b-modal class="confirmedModal" ref="confirmedModal" size="lg" hide-footer hide-header>
+      <h4 class="text-center">{{ $t("buy_order") }}</h4>
+      <div>
+        <!-- <b-img center src="@/assets/check_order.png" alt="Center image"></b-img> -->
+      </div>
+      <h5 class="text-center">{{ $t("order_in_room") }}</h5>
+      <div class="buttonsFooter">
+        <b-button class="btn-modal" @click="hideConfirmedModal">{{
+          $t("new_order")
+        }}</b-button>
+        <b-button class="btn-modal" @click="continueConfirmedModal">{{
+          $t("continue")
+        }}</b-button>
+      </div>
+    </b-modal>
+
+  </div>
+</template>
+<script>
+import axios from "axios";
+import VueAxios from "vue-axios";
+import Loading from "vue-loading-overlay";
+import Paginador from "@/components/Paginador.vue";
+import "vue-loading-overlay/dist/vue-loading.css";
+import {mapState, mapMutations , mapGetters} from 'vuex';
+
+const customStyles = {
+  ul: {
+    border: "2px solid red",
+  },
+  li: {
+    display: "inline-block",
+    border: "2px dotted green",
+  },
+  a: {
+    color: "blue",
+  },
+};
+
+export default {
+  name: "listarDesayunos",
+  data() {
+    return {
+      imgObj: {
+        src: 'https://picsum.photos/id/237/200/300',
+        error: 'https://picsum.photos/200/300.webp',
+        loading: './img/loading.gif'
+      },
+      temporalCommentFoodId: null,
+      temporalComment: null,
+      show: false,
+      customStyles,
+      isLoading: false,
+      fullPage: true,
+      value: 0,
+      total: "",
+      open: false,
+      id: "",
+      contador: 0,
+      valor:0,
+      serviceWorkerRegistation: null,
+      fields: [
+        {
+          key: "food",
+          label: "Menú",
+        },
+         {
+          key: "quantity",
+          label: "Cantidad",
+        },
+        {
+          key: "price",
+          label: "Valor",
+        },
+        {
+          label: "Total",
+        },
+        {
+          key: "action",
+          label: "",
+        },
+      ],
+      dataorder: [],
+      foodID: null,
+      loadingButton: false,
+    };
+  },
+  components: {
+    Loading,
+    Paginador,
+  },
+  beforeDestroy(){
+    this.deleteData()
+  },
+  created(){
+    },
+  mounted(){
+
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    if(this.$route.params.id){
+      this.foodID = this.$route.params.id
+      this.goToPage()
+      this.scroll();
+    }
+  },
+  computed: {
+    totalItems() {
+      let totalPrice = this.getSelectedFood.reduce((acc, item) => {
+        acc += item.price * item.quantity;
+        return acc;
+      }, 0);
+      return totalPrice;
+    },
+    paginationRows() {
+      return 50;
+    },
+    paginationPerPage() {
+      return 4;
+    },
+    buttonsEnabled() {
+      return false;
+    },
+      ...mapState(['token','reservation']), 
+  },
+  methods: {
+    habilitarNotificaciones(){
+      this.activarNotificaciones().then(sub => {
+        //console.log("valor de sub: "+ sub)
+        this.$refs['my-modal'].hide();
+        
+    })
+    },
+    cerrarModal() {
+      this.$refs['my-modal'].hide();
+    },
+    scroll(){
+      window.onscroll = () => {
+        let scrollTop      = document.documentElement.scrollTop;
+        let innerHeight    = window.innerHeight;
+        let offsetHeight   = document.documentElement.offsetHeight;
+        let bottomOfWindow = scrollTop + innerHeight >= (offsetHeight - 5);
+       
+        if (bottomOfWindow) {
+          let { current_page, last_page } = this.getPagination, 
+            nextPage =  current_page + 1
+            if((nextPage <= last_page) && (nextPage != current_page)){
+              this.goToPage(nextPage)
+            }
+        }
+      };
+    },
+    goToPage(page = 1){
+       this.isLoading = true;
+      this.loadingButton = true
+      this.getComidas({
+        food: this.foodID,
+        page : page
+        }).then((response)=>{
+          if (response.data.length <= 0) {
+            this.getFoodItems = ''
+           // this.back()
+            this.$refs["notfood"].show();
+          }
+          this.loadingButton = false
+            this.isLoading = false;
+        })
+    },
+    addComment({ comment, id }) {
+      this.temporalCommentFoodId = id;
+      this.temporalComment = comment;
+      this.$refs["commentModal"].show();
+    },
+    setComment() {
+        this.setFoodComment([this.temporalCommentFoodId, this.temporalComment]);
+        this.temporalCommentFoodId = null;
+        this.temporalComment = null;
+        this.hideModalComment();
+    },
+    nextPageFood(page) {
+     
+    },
+    showModal(value) {
+      this.valor = value;
+      this.$refs["orderModal"].show();
+    },
+    hideModalComment() {
+      this.$refs["commentModal"].hide();
+    },
+    hideModal() {
+      this.$refs["orderModal"].hide();
+    },
+    confirmOrder(getSelectedFood, totalItems) {
+   
+      this.isLoading = true;
+      this.$store
+        .dispatch("saveOrder", {
+          data: getSelectedFood,
+          token: this.token,
+          user_id: this.user_id,
+          reservation_id: this.reservation.id,
+          totalprice: this.totalItems,
+        })
+        .then((response) => {
+         
+          if (response.status == 200) {
+            this.isLoading = false;
+            this.hideModal();
+            this.showConfirmedModal();
+          }
+        })
+
+        .catch((error) => {
+              if (error.status === 401) {
+            this.$route.push({ name: "Login" });
+          }
+          this.$toast.error("Error al Procesar la Orden.", {
+            position: "top",
+          });
+          this.error = this.isLoading = false;
+        });
+    },
+    showConfirmedModal() {
+      this.$refs["confirmedModal"].show();
+    },
+    hideConfirmedModal() {
+      this.$refs["confirmedModal"].hide()
+    },
+    continueConfirmedModal() {
+      this.hideConfirmedModal()
+      this.back()
+    },
+    back: function(){ 
+      this.$router.go(-1);
+    },
+    deleteSelection(itemId) {
+      this.resetItemSelection(itemId);
+      if (!this.getSelectedFood.length > 0) {
+        this.hideModal();
+      }
+    },
+  },
+};
+</script>
+
+
+
+<style scoped>
+.m_title{
+  font-family: "HelveticaBold";
+  
+  text-transform: uppercase;
+}
+
+.title_card{
+  font-weight: bold;
+  font-family: "FonstFree";
+  text-transform: uppercase;
+}
+
+.title_food{
+  font-weight: bold;
+  font-family: "FonstFree";
+  text-transform: uppercase;
+}
+
+.confirmedModal, .orderModal, .notfood, .commentModal{
+  font-family: "FonstFree";
+}
+
+textarea::placeholder{
+  font-family: "FonstFree";
+  text-transform: uppercase;
+  font-size:12px;
+}
+
+.shadow-card {
+  -webkit-box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);
+  box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);
+}
+.btn-trash {
+  /*   margin: 0px !important; */
+  margin-top: -6px;
+  background-color: #94700a;
+}
+.resumeTable {
+  border-spacing: 2px;
+  font-family:'FonstFree';
+  text-transform: uppercase; 
+  font-size: 80%;
+}
+.resumeTable th {
+  text-align: center;
+  border-top: none !important;
+
+}
+.resumeTable th:first-child {
+  text-align: left;
+
+}
+.resumeTable td {
+  text-align: center;
+  border-top: 2px solid #94700a;
+  width:  10px;
+}
+.resumeTable td:first-child {
+  text-align: left;
+  border-top: 2px solid #94700a;
+}
+.resumeTable tr:first-child td {
+  border-top: none !important;
+}
+.resumeTable thead th {
+  vertical-align: bottom;
+  border-bottom: none !important;
+}
+.buttonsFooter {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.btn-modal {
+  border: 1px solid #94700a;
+  background-color: #94700a;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+  min-width: 142px;
+  color: white;
+  font-family:'FonstFree';
+  text-transform: uppercase;
+  font-size: 80%; 
+}
+.btn-danger {
+  color: #fff;
+  background-color: #94700a;
+  border-color: #94700a;
+  margin-left: 9px;
+}
+
+.btn-sm,
+.btn-group-sm > .btn {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.885rem;
+  line-height: 1.5;
+  border-radius: 1.2rem;
+  font-family: "FontsFree";
+  font-weight:bold
+}
+img.mx-auto.d-block {
+  width: 100px;
+}
+
+main {
+  max-width: 1528px;
+  padding: -11px;
+  border-radius: 10px;
+  margin: auto;
+  margin-top: -5px;
+  font-family: "Helvetica";
+}
+.image_card {
+  height: auto;
+}
+
+.bt_lg {
+  position: absolute;
+  left: 35%;
+  bottom: 5%;
+}
+
+.bt_1 {
+  border-radius: 5px;
+  background-color: black;
+  width: 120%;
+  margin-left: 50%;
+  color: white;
+}
+
+.bt_2 {
+  display: none;
+  border-radius: 5px;
+  background-color: #94700a;
+  width: 140px;
+}
+
+.btn-outline-primary {
+  border-color: #967517;
+  color: #967517;
+  border-radius: 50px;
+  margin: 10px;
+}
+.btn-outline-primary:hover {
+  border-color: #967517;
+  background-color: #967517;
+  color: white;
+  border-radius: 50px;
+  margin: 10px;
+}
+.btn-outline-primary.active, .btn-outline-primary:active, .btn-outline-primary:active:focus, .btn-outline-primary:active:hover, .btn-outline-primary:focus, .btn-outline-primary:hover {
+    border-color:#967517;
+    color: #fff;
+    background-color: #967517;
+}
+.count {
+  width: 33px;
+  height: 32px;
+  border-color: #967517;
+  color: #967517;
+  margin: 10px;
+  padding: 2px;
+}
+.cant {
+  margin-top: 16px;
+}
+
+.content-card-2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+h4 {
+  text-align: center;
+}
+
+.text {
+  text-align: center;
+  margin-top: 14%;
+}
+.card-body {
+  -ms-flex: 1 1 auto;
+  -webkit-box-flex: 1;
+  flex: 1 1 auto;
+  min-height: 1px;
+  padding: 0.45rem;
+}
+
+.cantidad {
+  text-align: center;
+  margin-bottom: 7px;
+  margin-top: -4%;
+}
+
+.button_badge {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: flex-end;
+  -webkit-transform: translateY(-100px);
+  background: white;
+  width: 70%;
+  height: 95px;
+  margin: auto;
+  margin-top: 49px;
+  padding-right: 32px;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 3px;
+}
+
+.bt_top {
+  background-color: #94700a;
+  border: #4c3a05;
+  width: 28%;
+  height: 60px;
+  margin: 5px;
+  margin-top: 19px;
+  color: white;
+  font-family: "FonstFree";
+  text-transform: uppercase;
+}
+
+.btt_1 {
+  background-color: #c7c1c1a6;
+  color: black;
+}
+
+.bt_left {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  background: #A17E13 none;
+  border-radius: 50%;
+  position: absolute;
+  left: 64%;
+  top: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  color: aliceblue;
+}
+
+.b-form-spinbutton.d-inline-flex:not(.flex-column) {
+  width: 45%;
+  height: 24px;
+}
+
+p {
+  margin-top: -6px;
+  margin-bottom: 1rem;
+}
+
+.description {
+  padding: 10px;
+  text-align: center !important;
+  font-family: "FonstFree";
+  
+}
+
+.page-item.active .page-link {
+  z-index: 3;
+  color: #fff;
+  background-color: #c4a650;
+  border-color: #c4a650;
+}
+
+.pedido {
+  margin-top: 17px;
+  margin-bottom: 1rem;
+  font-size: 25px;
+  text-align: center;
+  transform: translate(-89px);
+  text-transform: uppercase;
+  line-height: 33px;
+  letter-spacing: 6px;
+  font-family: "Helvetica";
+}
+
+#sb-inline {
+  width: 95%;
+}
+
+.costo {
+  font-size: 20px;
+  margin-top: -12%;
+  color: #967517;
+  font-family:"Fonstfree";
+}
+
+.contador {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+
+.btn-outline-danger:hover {
+     border-color: #ab8930;
+    color: #ab8930;
+}
+.btn.btn-outline.red {
+    border-color: #ab8930;
+    color: #ab8930;
+    background: 0 0;
+}
+.btn.btn-outline.red.active, .btn.btn-outline.red:active, .btn.btn-outline.red:active:focus, .btn.btn-outline.red:active:hover, .btn.btn-outline.red:focus, .btn.btn-outline.red:hover {
+    border-color: #ab8930;
+    color: #fff;
+    background-color: #ab8930;
+}
+.btn.btn-outline.red:hover {
+    background:#ab8930 ;
+    border-color: #ab8930;
+}
+
+  .baner_principal{
+       margin-top: 4%;
+  }
+
+
+/* Smartphones (portrait & landscape) */
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  .main {
+    max-width: 1528px;
+    margin-top: -5px;
+    padding: 9px;
+  }
+  .baner img {
+    width: 100%;
+    height: 70px;
+    margin-top: 16%;
+  }
+  .content-card-2 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 3%;
+    padding: 17px;
+  }
+  .button_badge {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 9px;
+    margin-top: 76px;
+    width: 100%;
+    height: 60px;
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 3px;
+  }
+  .pedido {
+    display: none;
+  }
+  .bt_top {
+    background-color: #c4a650;
+    width: 44%;
+    height: 32px;
+    margin: 5px;
+    margin-top: 2%;
+    font-size: 11px;
+  }
+
+  .buton {
+    position: relative;
+    left: 12%;
+    top: 88%;
+  }
+  .bt_1 {
+    border-radius: 5px;
+    background-color: black;
+    margin: 9px;
+    /*  width: 135px; */
+  }
+  .bt_2 {
+    display: none;
+    width: 84px;
+  }
+
+  .btt_1 {
+    background-color: #c7c1c1a6;
+    color: black;
+  }
+
+  .bt_left {
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    background: #94700a none;
+    border-radius: 50%;
+    position: absolute;
+    left: 41%;
+    top: 10px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    color: aliceblue;
+  }
+
+  .b-form-spinbutton.d-inline-flex:not(.flex-column) {
+    width: 54%;
+    height: 24px;
+  }
+  .text {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 7px;
+    margin-top: 21px;
+    font-family: "FonstFree";
+  }
+
+  p {
+    margin-top: -7px;
+    margin-bottom: 1rem;
+  }
+
+  .page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #c4a650;
+    border-color: #c4a650;
+  }
+
+  /* .card {
+    width: 100%;
+    height: auto;
+    transform: translateY(-22%);
+    border-radius: none !important;
+    padding-bottom: 10%;
+  } */
+  .card img {
+    border-radius: unset;
+    height: 250px;
+    font-family: "FonstFree";
+  }
+
+  .costo {
+    font-size: 20px;
+    color: #695417;
+    margin-left: -25%;
+    font-family: "FonstFree";
+    
+  }
+  .total_price {
+    color: #695417;
+    font-size: 20px;
+    margin-top: -16px;
+    font-family: "FonstFree";
+  }
+
+  .table th, .table td {
+    padding: 3px;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+
+  .baner_principal{
+       margin-top: 16%;
+  }
+
+}
+/* Smartphones (landscape) */
+@media only screen and (min-width: 321px) {
+}
+/* Smartphones (portrait) */
+@media only screen and (max-width: 750px) {
+  .buton {
+    position: relative;
+    margin-left: 7.8%;
+  /*  margin-top: -5%;
+    margin-left: 15%;*/
+  }
+}
+/* iPads (portrait & landscape) */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  .content-card-2 {
+    width: 99%;
+    transform: translateY(-7%);
+  }
+
+  .pedido {
+    margin-top: 27px;
+    margin-bottom: 1rem;
+    font-size: 13px;
+    text-align: center;
+    -webkit-transform: translate(-89px);
+    transform: translate(1px, 1px);
+    text-transform: uppercase;
+    line-height: 23px;
+  }
+  .button_badge {
+    width: 88%;
+  }
+  .btt_1[data-v-514aa278] {
+    background-color: #c7c1c1a6;
+    color: black;
+  }
+  .bt_top {
+    background-color: #c4a650;
+    border: #c4a650;
+    width: 40%;
+    margin-top: 3%;
+  }
+  .bt_left {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    background: #94700a none;
+    border-radius: 50%;
+    position: absolute;
+    left: 50.5%;
+    top: 10%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    color: aliceblue;
+  }
+}
+/* iPads (landscape) */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+  .main {
+    width: 89%;
+  }
+  .bt_top {
+    background-color: #c4a650;
+    border: #c4a650;
+    width: 40%;
+    margin-top: 5%;
+  }
+  .bt_lg {
+    position: absolute;
+    left: 35%;
+    bottom: 5%;
+  }
+}
+/* iPads (portrait) */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+  .bt_top {
+    background-color: #c4a650;
+    border: #c4a650;
+    width: 40%;
+    margin-top: 3%;
+  }
+  .card {
+    max-width: 97%;
+    height: 224px;
+    margin: 5px;
+    border: none;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 3px;
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 3px;
+  }
+  .bt_lg {
+    position: absolute;
+    left: 35%;
+    bottom: 5%;
+  }
+}
+/* Ordenadores de sobremesa y portátiles */
+@media only screen and (min-width: 1224px) {
+}
+/* Pantallas grandes */
+@media only screen and (min-width: 1824px) {
+}
+/* iPhone 4 */
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+  only screen and (min-device-pixel-ratio: 1.5) {
+}
+</style>
+
