@@ -265,6 +265,9 @@ import 'vueperslides/dist/vueperslides.css';
 		.content-room{
 			margin-bottom: 19%;
 		}
+		.salones-select{
+			margin-top: -21%;
+		}
 
 	}
 	@media only screen and (device-width : 375px) and (device-height : 812px) 

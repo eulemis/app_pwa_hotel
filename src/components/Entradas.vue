@@ -300,7 +300,7 @@ h2{
 
     .salones{
         text-align: center;
-        margin-top: 280%;
+        margin-top: 303%;
     }
     .salones-select{
         margin-top: -28%;

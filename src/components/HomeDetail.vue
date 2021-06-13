@@ -364,6 +364,7 @@ main{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    margin-bottom: 5%;
    
 }
 
@@ -454,7 +455,7 @@ main{
 .servicio_title{
     margin-left: 16%;
     font-size: 28px;
-/*    margin-top: 7%;*/
+    margin-top: -7%;
     font-family: "HelveticaBold";
     text-transform: uppercase;
 }

@@ -96,7 +96,7 @@
         </div>
     </b-modal>
     <div class="footer">
-  <a style="float: left;padding:12px;" >   <b-icon @click="showModal()" icon="chat-square-dots" font-scale="2" style="cursor:pointer;color: #af8103;font-size: 180%;margin-bottom: 5px;"></b-icon></a>
+  <a style="float: left;padding:12px;" >   <b-icon @click="showModal()" icon="chat-square-dots" font-scale="2" class="b_notification"></b-icon></a>
   <a href="https://api.whatsapp.com/send?phone=584242515529" target="_blank" style="float:right;padding:12px;" >  <img class="icon_watsapp" src="@/assets/Whatsapp.png" style="width: 38px;" ></a>
 </div>
 <!--     <div class="btn-whatsapp">
@@ -317,6 +317,15 @@ export default {
 </script>
 
 <style scoped>
+.b_notification{
+cursor:pointer;
+color: white;
+font-size: 180%;
+margin-bottom: 5px;
+background-color:#af8103;
+padding: 7px;
+border-radius:50%;
+}
 .footer {
    position: fixed;
    left: 0;
