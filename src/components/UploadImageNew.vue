@@ -5,8 +5,8 @@
           
                 <h5 class="font" v-show="optionPayment" style="text-align:center;margin-top:5%">{{ $t("title_upload") }}</h5><br>   
                 <div v-show="optionPayment">
-                    <img style="width: 100%; height: 300px; margin-left: 3%"  v-show="Fondo"    class="img_services" v-if="imagePayment"  v-bind:src="imagePayment" alt="">
-                    <img style="width: 100%; height: 300px; margin-top:-26%;"   v-show="Fondo"    class="img_services" v-else src="@/assets/add_img_web.svg" alt="">
+                    <img   v-show="Fondo"    class="img_services" v-if="imagePayment"  v-bind:src="imagePayment" alt="">
+                    <img   v-show="Fondo"    class="img_services" v-else src="@/assets/add_img_web.svg" alt="">
                 </div>
             </div>
         </div>
@@ -173,7 +173,7 @@ export default {
                     this.previewCamera = false
                     this.showDialog = false
                     this.$store.commit("uploadImage", false);
-                    this.$toast.success("Su Pre check In fue realizado con éxito.", {
+                    this.$toast.default("Su Pre check In fue realizado con éxito.", {
                         position: "top"
                       
                     });
@@ -288,6 +288,21 @@ export default {
 .zelle{
     margin-right: 14px;
     font-size: 18px;
+}
+
+.img_services{
+    width: 70%; 
+    height: 250px; 
+    margin-left: 15%;
+
+}
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px){
+   .img_services{
+        width: 100%; 
+        height: 220px; 
+        margin-left: 1% !important;
+
+    } 
 }
 
 </style>

@@ -67,7 +67,7 @@ export default new Vuex.Store({
 			if (current_page == 1) {
 				foodPagination.data = []
 			}
-			console.log("setFoodPagination", foodPagination, data )
+			//console.log("setFoodPagination", foodPagination, data )
 			data = data.map(food => {
 					food.quantity = 0,
 					food.comment = '',
@@ -134,7 +134,7 @@ export default new Vuex.Store({
 			state.foodPagination.data[index].comment = pack[1]
 		},
 		incrementItemFood(state, idFood) {
-			console.log(state.foodPagination, state.foodPagination.data.findIndex(({ id }) => id == idFood))
+			//console.log(state.foodPagination, state.foodPagination.data.findIndex(({ id }) => id == idFood))
 			let index = state.foodPagination.data.findIndex(({ id }) => id == idFood)
 			state.foodPagination.data[index].quantity++
 		},
@@ -184,7 +184,7 @@ export default new Vuex.Store({
 			return state.token !== null
 		},
 		getFoodItems({ foodPagination }) {
-			console.log("getFoodItems", foodPagination.data)
+			//console.log("getFoodItems", foodPagination.data)
 			return foodPagination.data
 		},
 		getSelectedFood({ foodPagination }) {
@@ -429,7 +429,7 @@ export default new Vuex.Store({
 			})
 		},
 		saveComment(context, credentials) {
-			console.log(credentials)
+			//console.log(credentials)
 			return new Promise((resolve, reject) => {
 				axios({
 					method: 'post', //you can set what request you want to be

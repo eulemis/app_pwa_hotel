@@ -1,11 +1,11 @@
 <template>
   <div class="prechekin">
-<!--     <loading
-      :active.sync="isLoading"
-      :can-cancel="true"
-      :is-full-page="fullPage"
-    >
-    </loading> -->
+<loading
+    :active.sync="isLoading"
+    :can-cancel="true"
+    :is-full-page="fullPage"
+>
+</loading>
    
         <div class="information_huesped">   
             <b-row>
@@ -38,7 +38,7 @@
             </div>
             <div class="col-md-6 img_huesped">
                 <div v-show="paymentform" class="checkbox-list">
-                    <h3 class="font">Seleccione su forma de Pago</h3>
+                    <h4 class="font">Seleccione su forma de Pago</h4>
                     <b-form-radio class="font"   v-model="chk_method_payment" name="method_payment" value="Efectivo" switch size="lg">
                         Efectivo
                     </b-form-radio>
@@ -155,7 +155,7 @@ export default {
         })
   
         this.imagePayment = response.data.image_pay;
-        console.log(this.imagenIdentity != 'null')
+        //console.log(this.imagenIdentity != 'null')
 
 /*        if(this.imagenIdentity != 'null')   {
             this.showcomponent = true;
@@ -214,7 +214,7 @@ div.content img {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    margin-top: 22%;
+    margin-top: 15%;
     margin-left: 9%;
     background-color: white;
     width: 70%;

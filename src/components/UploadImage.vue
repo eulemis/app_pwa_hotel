@@ -240,6 +240,7 @@ export default {
 <style scoped>
 .container {
     margin-top: 5rem !important;
+    margin-bottom: 10%;
     font-family: "FonstFree";
 }
 
@@ -267,15 +268,16 @@ export default {
     font-family: "FonstFree";
 }
 .img_services{
-    width: 100%; 
-    height: 300px; 
-    margin-left: 3%;
+    width: 70%; 
+    height: 250px; 
+    margin-left: 15%;
+
 }
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px){
    .img_services{
         width: 100%; 
-        height: 300px; 
-        margin-left: 3% !important;
+        height: 220px; 
+        margin-left: 1% !important;
 
     } 
 }
