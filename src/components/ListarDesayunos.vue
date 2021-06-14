@@ -134,7 +134,8 @@
             :key="index"
             cols="12"
           >
-            <h2 v-show="titlefood" class="text-capitalize">{{ food.title }}</h2>
+            <h2 v-show="titlefood" class="text-capitalize" v-if="food.title == 'menu infantil'" >Menú Infantil</h2>
+            <h2 v-show="titlefood" class="text-capitalize" v-else >{{ food.title }}</h2>
             <v-row>
               <v-col
                 v-for="(food, i) in food.items"
