@@ -318,4 +318,11 @@ h2{
 
     }
 
+@media only screen and (min-device-width: 411px) and (max-device-width: 823px){
+	.lav{
+	    text-align: center;
+    	margin-top: 27%;
+	}	
+}
+
 </style>

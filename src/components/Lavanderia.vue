@@ -35,9 +35,7 @@
         ],
         fields2: ['Articulo', 'Precio'],
         items2: [
-          { Precio: '$ '+ 80, Articulo: 'Papel Toalè '},
-          { Precio: '$ '+ 50, Articulo: 'Toallas'},
-          { Precio: '$ '+ 90, Articulo: 'Champù' },
+ 
           { Precio: '$ '+ 80, Articulo: 'Toallas Sanitarias'},
           { Precio: '$ '+ 50, Articulo: 'Jabon de Tocador'},
           { Precio: '$ '+ 90, Articulo: 'Sábanas' }
@@ -187,4 +185,5 @@
 		}
 	
 	}
+	
 </style>
