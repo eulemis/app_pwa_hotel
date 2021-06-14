@@ -1,14 +1,14 @@
 <template>
 	<div class="main-lavanderia mt-3">
 		<div class="btn_lavanderia">
-			<b-button  class="btn-action" :class="{ active: isActive }" @click="lavanderia()">Lavanderia</b-button>
+			<b-button  class="btn-action" :class="{ active: isActive }" @click="lavanderia()">Lavandería</b-button>
 			 <div   class="content-table" v-show="lavanderia_show">
 			    <b-table border="1"  :items="items" :fields="fields" class="mt-3 tdTable" outlined >
 			    </b-table>
 			 </div>
 		</div>
 		<div class="btn_lavanderia">
-			<b-button  class="btn-action" :class="{ active: isActive2 }" @click="tintoreria()">Tintoreria</b-button>
+			<b-button  class="btn-action" :class="{ active: isActive2 }" @click="tintoreria()">Tintorería</b-button>
 			<div   class="content-table " v-show="tintoreria_show">
 			    <b-table border="1"  :items="items2" :fields="fields2" class="mt-3 tdTable Dt" outlined >
 			    </b-table>
@@ -29,22 +29,54 @@
         return {
         fields: ['Articulo', 'Precio'],
         items: [
-          { Precio: '$ '+ 40, Articulo: 'Dickerson kjhgkjhjk hkjh '},
-          { Precio: '$ '+ 21, Articulo: 'Larsen'},
-          { Precio: '$ '+ 89, Articulo: 'Geneva' }
+          { Precio: '$ '+ 2.5, Articulo: 'CALCETINES'},
+          { Precio: '$ '+ 2.5, Articulo: 'CALZONCILLOS'},
+          { Precio: '$ '+ 3, Articulo: 'CAMISA POLO' },
+		  { Precio: '$ '+ 4, Articulo: 'FRANELAS' },
+		  { Precio: '$ '+ 4, Articulo: 'PANTALONES CORTOS' },
+		  { Precio: '$ '+ 1, Articulo: 'PAÑUELOS' },
+		  { Precio: '$ '+ 4.5, Articulo: 'CAMISA POLO BLANCA' },
+		  { Precio: '$ '+ 2, Articulo: 'PIJAMAS (2 piezas)' },
+		  { Precio: '$ '+ 2, Articulo: 'ROPA INTERIOR DE DAMA' },
+		  { Precio: '$ '+ 4, Articulo: 'CAMISA BLANCA' },
+		  { Precio: '$ '+ 2, Articulo: 'BATA' }
+
         ],
         fields2: ['Articulo', 'Precio'],
         items2: [
  
-          { Precio: '$ '+ 80, Articulo: 'Toallas Sanitarias'},
-          { Precio: '$ '+ 50, Articulo: 'Jabon de Tocador'},
-          { Precio: '$ '+ 90, Articulo: 'Sábanas' }
+          { Precio: '$ '+ 4, Articulo: 'BLUSA'},
+          { Precio: '$ '+ 4, Articulo: 'CAMISA'},
+		  { Precio: '$ '+ 5, Articulo: 'CHAQUETA'},
+		  { Precio: '$ '+ 3, Articulo: 'CORBATA'},
+		  { Precio: '$ '+ 4, Articulo: 'FALDA'},
+		  { Precio: '$ '+ 8, Articulo: 'VESTIDO (corto)'},
+		  { Precio: '$ '+ 4, Articulo: 'SWEATER'},
+		  { Precio: '$ '+ 7, Articulo: 'TRAJE (3 piezas)'},
+		  { Precio: '$ '+ 9, Articulo: 'TRAJE DE ETIQUETA'},
+		  { Precio: '$ '+ 11, Articulo: 'VESTIDO DE NOCHE'},
+		  { Precio: '$ '+ 8, Articulo: 'VESTIDO (largo)	'},
+		  { Precio: '$ '+ 3, Articulo: 'PANTALONES'},
+		  { Precio: '$ '+ 5, Articulo: 'CAMISA DE SEDA'},
+		  { Precio: '$ '+ 4, Articulo: 'GUAYABERA'},
+		  { Precio: '$ '+ 6, Articulo: 'BLUSA BLANCAS'},
+		  { Precio: '$ '+ 5, Articulo: 'CAMISA CON ALMIDON'},
+		  { Precio: '$ '+ 3, Articulo: 'CAMISA BLANCA'},
+		  { Precio: '$ '+ 5.5, Articulo: 'CHAQUETA'},
+		  { Precio: '$ '+ 4.5, Articulo: 'PANTALON'},
+
         ],
         fields3: ['Articulo', 'Precio'],
         items3: [
-          { Precio: '$ '+ 80, Articulo: 'Toallas Sanitarias'},
-          { Precio: '$ '+ 50, Articulo: 'Jabon de Tocador'},
-          { Precio: '$ '+ 90, Articulo: 'Sábanas' }
+          { Precio: '$ '+ 2, Articulo: 'BLUSA' },
+		  { Precio: '$ '+ 2, Articulo: 'CAMISA' },
+		  { Precio: '$ '+ 2, Articulo: 'CHAQUETA' },
+		  { Precio: '$ '+ 4, Articulo: 'FALDA' },
+		  { Precio: '$ '+ 3, Articulo: 'PANTALONES' },
+		  { Precio: '$ '+ 5, Articulo: 'TRAJE' },
+		  { Precio: '$ '+ 8, Articulo: 'TRAJE DE ETIQUETA' },
+		  { Precio: '$ '+ 7, Articulo: 'VESTIDO DE NOCHE' },
+		  { Precio: '$ '+ 5, Articulo: 'VESTIDO' }
         ],
         lavanderia_show:true,
         tintoreria_show:false,
@@ -148,6 +180,8 @@
 	}
 	.tdTable{
 		width: 400px;
+		color:black;
+		font-family: "FonstFree";
 	}
 	.content-table{
 		background-color: white;

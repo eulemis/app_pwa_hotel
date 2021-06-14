@@ -79,9 +79,10 @@ export default {
     background-size: cover;
 }*/
 .horario{
-    margin-top: 6%;
+    margin-top: 8%;
+    margin-left: 4%;
     display: flex;
-    justify-content: center;
+    justify-content: left;
     font-family: "HelveticaBold";
 }
 
