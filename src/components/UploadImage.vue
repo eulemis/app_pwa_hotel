@@ -4,7 +4,7 @@
             <div class="col-md-12" style="margin-top: -71px;">
                 <h5 class="font" style="text-align:center;margin-top:5%">{{ $t("title_identity") }}</h5><br>  
                  <img  v-show="view"   class="img_services" v-if="imagenIdentity"  v-bind:src="imagenIdentity" alt="">
-                 <img style="width: 90%; height: 300px; margin-left:5%;" v-show="view"   class="img_services" v-else  src="@/assets/add_img_web.svg" alt="">
+                 <img style="width: 80%; height: auto; margin-left:5%;" v-show="view"   class="img_services" v-else  src="@/assets/add_img_web.svg" alt="">
             </div>
         </div>
     <b-row class="justify-content-center">

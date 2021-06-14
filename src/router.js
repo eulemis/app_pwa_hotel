@@ -101,6 +101,26 @@ const router = new Router({
       }
 
     },
+    {
+      path: '/salones',
+      name: 'salones',
+      component: () => import('./views/Salon.vue'),
+
+      meta: {
+        requiresAuth: true,
+      }
+
+    },
+    {
+      path: '/lavanderia',
+      name: 'lavanderia',
+      component: () => import('./views/Lavanderia.vue'),
+
+      meta: {
+        requiresAuth: true,
+      }
+
+    },
   ]
 })
 router.beforeEach((to, from, next) => {

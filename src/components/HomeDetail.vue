@@ -54,7 +54,7 @@
                     <div class="info">
                       <h3 class="room_service title_atras">Salones y Terrazas</h3>
                       <hr class="hr_">
-                      <p class="room_service">Lidotel Centro Lido Caracas ofrece una terraza y cinco salas versátiles, cómodas y elegantes para cualquier tipo de eventos: Bodas, lanzamientos, showrooms, conferencias, reuniones de trabajo, congresos, entre otros. <a  style="color:rgb(191 131 3); cursor:pointer;"  @click="getViewEntradas(4)" >Leer Más...</a></p>
+                      <p class="room_service">Lidotel Centro Lido Caracas ofrece una terraza y cinco salas versátiles, cómodas y elegantes para cualquier tipo de eventos: Bodas, lanzamientos, showrooms, conferencias, reuniones de trabajo, congresos, entre otros. <a  style="color:rgb(191 131 3); cursor:pointer;"  @click="getViewSalones" >Leer Más...</a></p>
                     </div>
                 </div>
             </div>
@@ -107,7 +107,7 @@
                     <div class="info">
                       <h3 class="room_service title_atras">Lavanderia</h3>
                       <hr class="hr_">
-                      <p class="room_service">Manténgase conectado durante su estadía, a través de nuestro servicio WiFi gratuito en todas nuestras instalaciones. <a style="color:rgb(191 131 3);cursor:pointer;"  @click="getViewEntradas(7)" >Leer Más...</a></p>
+                      <p class="room_service">Manténgase conectado durante su estadía, a través de nuestro servicio WiFi gratuito en todas nuestras instalaciones. <a style="color:rgb(191 131 3);cursor:pointer;"  @click="getViewLavanderia()" >Leer Más...</a></p>
                     </div>
                 </div>
             </div>
@@ -211,8 +211,14 @@ export default {
             this.$router.push({name: "food"});
           
         },
-        getViewEntradas(id_entrada) {
+        /* getViewEntradas(id_entrada) {
             this.$router.push({ name: 'vistas', params: { id: id_entrada } })   
+        }, */
+        getViewLavanderia() {
+            this.$router.push({name: "lavanderia"});  
+        },
+        getViewSalones() {
+             this.$router.push({name: "salones"});  
         },
         handler (component) {
             console.log('this component is showing')
