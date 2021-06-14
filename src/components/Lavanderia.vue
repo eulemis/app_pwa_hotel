@@ -15,7 +15,7 @@
 			</div>
 		</div>
 		<div class="btn_lavanderia ">
-			<b-button  class="btn-action" :class="{ active: isActive3 }" @click="plancha()">Solo Plancha</b-button>
+			<b-button  class="btn-action" :class="{ active: isActive3 }" @click="plancha()">Solo plancha</b-button>
 			<div   class="content-table " v-show="plancha_show">
 			    <b-table border="1"  :items="items3" :fields="fields3" class="mt-3 tdTable Dt_2" outlined >
 			    </b-table>
@@ -27,56 +27,56 @@
 	export default {
 		data() {
         return {
-        fields: ['Articulo', 'Precio'],
+        fields: ['PIEZA', 'PRECIO'],
         items: [
-          { Precio: '$ '+ 2.5, Articulo: 'CALCETINES'},
-          { Precio: '$ '+ 2.5, Articulo: 'CALZONCILLOS'},
-          { Precio: '$ '+ 3, Articulo: 'CAMISA POLO' },
-		  { Precio: '$ '+ 4, Articulo: 'FRANELAS' },
-		  { Precio: '$ '+ 4, Articulo: 'PANTALONES CORTOS' },
-		  { Precio: '$ '+ 1, Articulo: 'PAÑUELOS' },
-		  { Precio: '$ '+ 4.5, Articulo: 'CAMISA POLO BLANCA' },
-		  { Precio: '$ '+ 2, Articulo: 'PIJAMAS (2 piezas)' },
-		  { Precio: '$ '+ 2, Articulo: 'ROPA INTERIOR DE DAMA' },
-		  { Precio: '$ '+ 4, Articulo: 'CAMISA BLANCA' },
-		  { Precio: '$ '+ 2, Articulo: 'BATA' }
+          { PRECIO: '$ '+ 2.5, PIEZA: 'CALCETINES'},
+          { PRECIO: '$ '+ 2.5, PIEZA: 'CALZONCILLOS'},
+          { PRECIO: '$ '+ 3,   PIEZA: 'CAMISA POLO' },
+		  { PRECIO: '$ '+ 4,   PIEZA: 'FRANELAS' },
+		  { PRECIO: '$ '+ 4,   PIEZA: 'PANTALONES CORTOS' },
+		  { PRECIO: '$ '+ 1,   PIEZA: 'PAÑUELOS' },
+		  { PRECIO: '$ '+ 4.5, PIEZA: 'CAMISA POLO BLANCA' },
+		  { PRECIO: '$ '+ 2,   PIEZA: 'PIJAMAS (2 piezas)' },
+		  { PRECIO: '$ '+ 2,   PIEZA: 'ROPA INTERIOR DE DAMA' },
+		  { PRECIO: '$ '+ 4,   PIEZA: 'CAMISA BLANCA' },
+		  { PRECIO: '$ '+ 2,   PIEZA: 'BATA' }
 
         ],
-        fields2: ['Articulo', 'Precio'],
+        fields2: ['PIEZA', 'PRECIO'],
         items2: [
  
-          { Precio: '$ '+ 4, Articulo: 'BLUSA'},
-          { Precio: '$ '+ 4, Articulo: 'CAMISA'},
-		  { Precio: '$ '+ 5, Articulo: 'CHAQUETA'},
-		  { Precio: '$ '+ 3, Articulo: 'CORBATA'},
-		  { Precio: '$ '+ 4, Articulo: 'FALDA'},
-		  { Precio: '$ '+ 8, Articulo: 'VESTIDO (corto)'},
-		  { Precio: '$ '+ 4, Articulo: 'SWEATER'},
-		  { Precio: '$ '+ 7, Articulo: 'TRAJE (3 piezas)'},
-		  { Precio: '$ '+ 9, Articulo: 'TRAJE DE ETIQUETA'},
-		  { Precio: '$ '+ 11, Articulo: 'VESTIDO DE NOCHE'},
-		  { Precio: '$ '+ 8, Articulo: 'VESTIDO (largo)	'},
-		  { Precio: '$ '+ 3, Articulo: 'PANTALONES'},
-		  { Precio: '$ '+ 5, Articulo: 'CAMISA DE SEDA'},
-		  { Precio: '$ '+ 4, Articulo: 'GUAYABERA'},
-		  { Precio: '$ '+ 6, Articulo: 'BLUSA BLANCAS'},
-		  { Precio: '$ '+ 5, Articulo: 'CAMISA CON ALMIDON'},
-		  { Precio: '$ '+ 3, Articulo: 'CAMISA BLANCA'},
-		  { Precio: '$ '+ 5.5, Articulo: 'CHAQUETA'},
-		  { Precio: '$ '+ 4.5, Articulo: 'PANTALON'},
+          { PRECIO: '$ '+ 4,   PIEZA: 'BLUSA'},
+          { PRECIO: '$ '+ 4,   PIEZA: 'CAMISA'},
+		  { PRECIO: '$ '+ 5,   PIEZA: 'CHAQUETA'},
+		  { PRECIO: '$ '+ 3,   PIEZA: 'CORBATA'},
+		  { PRECIO: '$ '+ 4,   PIEZA: 'FALDA'},
+		  { PRECIO: '$ '+ 8,   PIEZA: 'VESTIDO (corto)'},
+		  { PRECIO: '$ '+ 4,   PIEZA: 'SWEATER'},
+		  { PRECIO: '$ '+ 7,   PIEZA: 'TRAJE (3 piezas)'},
+		  { PRECIO: '$ '+ 9,   PIEZA: 'TRAJE DE ETIQUETA'},
+		  { PRECIO: '$ '+ 11,  PIEZA: 'VESTIDO DE NOCHE'},
+		  { PRECIO: '$ '+ 8,   PIEZA: 'VESTIDO (largo)	'},
+		  { PRECIO: '$ '+ 3,   PIEZA: 'PANTALONES'},
+		  { PRECIO: '$ '+ 5,   PIEZA: 'CAMISA DE SEDA'},
+		  { PRECIO: '$ '+ 4,   PIEZA: 'GUAYABERA'},
+		  { PRECIO: '$ '+ 6,   PIEZA: 'BLUSA BLANCAS'},
+		  { PRECIO: '$ '+ 5,   PIEZA: 'CAMISA CON ALMIDON'},
+		  { PRECIO: '$ '+ 3,   PIEZA: 'CAMISA BLANCA'},
+		  { PRECIO: '$ '+ 5.5, PIEZA: 'CHAQUETA'},
+		  { PRECIO: '$ '+ 4.5, PIEZA: 'PANTALON'},
 
         ],
-        fields3: ['Articulo', 'Precio'],
+        fields3: ['PIEZA', 'PRECIO'],
         items3: [
-          { Precio: '$ '+ 2, Articulo: 'BLUSA' },
-		  { Precio: '$ '+ 2, Articulo: 'CAMISA' },
-		  { Precio: '$ '+ 2, Articulo: 'CHAQUETA' },
-		  { Precio: '$ '+ 4, Articulo: 'FALDA' },
-		  { Precio: '$ '+ 3, Articulo: 'PANTALONES' },
-		  { Precio: '$ '+ 5, Articulo: 'TRAJE' },
-		  { Precio: '$ '+ 8, Articulo: 'TRAJE DE ETIQUETA' },
-		  { Precio: '$ '+ 7, Articulo: 'VESTIDO DE NOCHE' },
-		  { Precio: '$ '+ 5, Articulo: 'VESTIDO' }
+          { PRECIO: '$ '+ 2, PIEZA: 'BLUSA' },
+		  { PRECIO: '$ '+ 2, PIEZA: 'CAMISA' },
+		  { PRECIO: '$ '+ 2, PIEZA: 'CHAQUETA' },
+		  { PRECIO: '$ '+ 4, PIEZA: 'FALDA' },
+		  { PRECIO: '$ '+ 3, PIEZA: 'PANTALONES' },
+		  { PRECIO: '$ '+ 5, PIEZA: 'TRAJE' },
+		  { PRECIO: '$ '+ 8, PIEZA: 'TRAJE DE ETIQUETA' },
+		  { PRECIO: '$ '+ 7, PIEZA: 'VESTIDO DE NOCHE' },
+		  { PRECIO: '$ '+ 5, PIEZA: 'VESTIDO' }
         ],
         lavanderia_show:true,
         tintoreria_show:false,
