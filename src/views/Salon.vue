@@ -1,6 +1,6 @@
 <template>
     <div class="main-salones">   
-        <h1 class="salones">Salones y Terrazas</h1> 
+        <h1 class="salones">Salones y Terraza</h1> 
         <h4 class="title">Ubicación: Terraza del piso 8 y Salones del piso 5.<br>
             <p style="padding-top: 3%">Previa reservación con nuestro equipo de Alimentos y Bebidas.</p>
         </h4>

@@ -119,7 +119,14 @@ const router = new Router({
       meta: {
         requiresAuth: true,
       }
-
+    },
+    {
+      path: '/gimnasio',
+      name: 'gimnasio',
+      component: () => import('./views/Gimnasio.vue'),
+      meta: {
+        requiresAuth: true,
+      }
     },
   ]
 })

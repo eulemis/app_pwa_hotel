@@ -49,10 +49,10 @@
                 <div class="ih-item square effect13 left_to_right">
                     <div class="img"><img src="@/assets/img_fondo/salones_gris.jpg" alt="img"></div>
                     <div>
-                        <h2 class="home_1">Salones y Terrazas</h2>
+                        <h2 class="home_1">Salones y Terraza</h2>
                     </div>
                     <div class="info">
-                      <h3 class="room_service title_atras">Salones y Terrazas</h3>
+                      <h3 class="room_service title_atras">Salones y Terraza</h3>
                       <hr class="hr_">
                       <p class="room_service">Lidotel Centro Lido Caracas ofrece una terraza y cinco salas versátiles, cómodas y elegantes para cualquier tipo de eventos: Bodas, lanzamientos, showrooms, conferencias, reuniones de trabajo, congresos, entre otros. <a  style="color:rgb(191 131 3); cursor:pointer;"  @click="getViewSalones" >Leer Más...</a></p>
                     </div>
@@ -80,7 +80,7 @@
                     <div class="info">
                       <h3 class="room_service title_atras">Gimnasio</h3>
                       <hr class="hr_">
-                      <p class="room_service">Amplias instalaciones y modernos equipos para que pueda disfrutar de un momento de esparcimiento y relajación en uno de los gimnasios más exclusivos de la capital. Se encuentra ubicado en el PISO 8</p>
+                      <p class="room_service">Amplias instalaciones y modernos equipos para que pueda disfrutar de un momento de esparcimiento y relajación en uno de los gimnasios más exclusivos de la capital. Se encuentra ubicado en el PISO 8. <a  style="color:rgb(191 131 3); cursor:pointer;"  @click="getViewGimnasio" >Leer Más...</a></p>
                     </div>
                 </div>
             </div>
@@ -94,6 +94,7 @@
                       <h3 class="room_service title_atras">Valet Parking</h3>
                       <hr class="hr_">
                       <p class="room_service">Para su mayor comodidad, ofrecemos el servicio de valet parking completamente gratuito para nuestros huéspedes.</p>
+                      <p><strong>Horario:</strong> 7:00 am a 7:00 pm</p>
                       <p class="room_service costo_valet_parking">Para visitantes tiene un costo de $10 diarios.</p>
                     </div>
                 </div>
@@ -102,12 +103,13 @@
                 <div class="ih-item square effect13 left_to_right">
                     <div class="img"><img src="@/assets/img_fondo/lavanderia_gris.jpg" alt="img"></div>
                     <div>
-                        <h2 class="home_1">Lavanderia</h2>
+                        <h2 class="home_1">Lavandería</h2>
                     </div>
                     <div class="info">
-                      <h3 class="room_service title_atras">Lavanderia</h3>
+                      <h3 class="room_service title_atras">Lavandería</h3>
                       <hr class="hr_">
-                      <p class="room_service">Manténgase conectado durante su estadía, a través de nuestro servicio WiFi gratuito en todas nuestras instalaciones. <a style="color:rgb(191 131 3);cursor:pointer;"  @click="getViewLavanderia()" >Leer Más...</a></p>
+                      <p class="p_text">Puede contar con nuestro servicio de lavandería y despreocuparse por el aseo de sus prendas.
+                        <a style="color:rgb(191 131 3);cursor:pointer;"  @click="getViewLavanderia()" >Leer Más...</a></p>
                     </div>
                 </div>
             </div>
@@ -133,9 +135,10 @@
                     <div class="info">
                         <h3 class="room_service title_atras">Acceso Directo</h3>
                         <hr class="hr_">
-                        <p style="font-size: 13px;" class="room_service">
+                        <p style="font-size: 13px;" class="room_service">Le ofrecemos un cómodo y rápido acceso al Centro Lido a través de nuestro lobby con la llave de su habitación. Disfrute de variedad de tiendas, farmacias, entidades bancarias, feria de comida, cine, entre otros, a solo pasos de nuestras instalaciones. Para mayor información visite:</p>
+                        <!--<p style="font-size: 13px;" class="room_service">
                             <ReadMore  more-str="Leer Más..." :text="text" link="#" less-str="Leer Menos..." :max-chars="50"></ReadMore>
-                        </p>
+                        </p>-->
                         <a class="read-more" target="_blank"  href="https://instagram.com/centrolido?utm_medium=copy_link">@centrolido</a>
                     </div>
                 </div>
@@ -205,11 +208,8 @@ export default {
         getViewPreChecking() {
             this.$router.push({name: "pre_checking"});
         },
-
         getViewServices() {
-        
             this.$router.push({name: "food"});
-          
         },
         /* getViewEntradas(id_entrada) {
             this.$router.push({ name: 'vistas', params: { id: id_entrada } })   
@@ -219,6 +219,9 @@ export default {
         },
         getViewSalones() {
              this.$router.push({name: "salones"});  
+        },
+        getViewGimnasio() {
+             this.$router.push({name: "gimnasio"});  
         },
         handler (component) {
             console.log('this component is showing')
@@ -230,16 +233,10 @@ export default {
         hideModal() {
           this.$refs["comentario"].hide();
         },
-       
-
      },
       mounted () {
-
        // this.banner = this.hotel[0].banner_home;
-   
-
-
-  },
+    },
 };
 </script>
 
