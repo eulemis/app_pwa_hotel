@@ -1,36 +1,35 @@
 <template>
-    <div>
-        <a name="inicio_gym"></a>
-        <div class="main-salones">
-
-            <h1 class="salones">Gimnasio</h1> 
-            <p class="txt_gym">Amplias instalaciones y modernos equipos para que pueda disfrutar de un momento de esparcimiento y relajación en uno de los gimnasios más exclusivos de la capital.</p>
-            <div class="underline"></div>
-            <div>
-                <h3 class="txt_horario">Horarios:</h3>
-                <p class="horario">
-                    Lunes a viernes 6:00 am a 7:00 pm (Semana flexible)<br> 
-                    Lunes a viernes 6:00 am a 5:00 pm (Semana radical) <br>
-                    Sábados 9:00 am a 2:00 pm (Semana flexible y radical)<br>
-                </p>
-            </div>
-                <p class="txt_gym">  <strong>Acceso gratuito a las instalaciones para huéspedes del hotel.</strong></p>
-            
-            <vueper-slides
-                class="no-shadow"
-                :visible-slides="1"
-                :slide-ratio="1 / 2"
-                :dragging-distance="40"
-                :gap="3"
-                :autoplay="true"
-                :arrows="false"
-            >
-            <vueper-slide v-for="(slide, i) in slides"
-                :key="i"
-                :image="slide.image"
-            />
-            </vueper-slides>
+    <div class="main-salones">   
+        <h1 class="salones">Gimnasio</h1> 
+        <p class="txt_gym">Amplias instalaciones y modernos equipos para que pueda disfrutar de un momento de esparcimiento y relajación en uno de los gimnasios más exclusivos de la capital.</p>
+        <div class="underline"></div>
+        <div>
+            <h3 class="txt_horario">Horarios:</h3>
+            <p class="horario">
+                Lunes a viernes 6:00 am a 7:00 pm (Semana flexible)<br> 
+                Lunes a viernes 6:00 am a 5:00 pm (Semana radical) <br>
+                Sábados 9:00 am a 2:00 pm (Semana flexible y radical)<br>
+            </p>
         </div>
+            <p class="txt_gym">  <strong>Acceso gratuito a las instalaciones para huéspedes del hotel.</strong></p>
+        
+        <vueper-slides
+            class="no-shadow"
+            :visible-slides="1"
+            :slide-ratio="1 / 2"
+            :dragging-distance="40"
+            :gap="3"
+            :autoplay="true"
+            :arrows="false"
+        >
+        <vueper-slide v-for="(slide, i) in slides"
+            :key="i"
+            :image="slide.image"
+        />
+        </vueper-slides>
+        
+          
+    
     </div>
 </template>
 <script>
