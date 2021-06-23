@@ -54,7 +54,7 @@
                     <div class="info">
                       <h3 class="room_service title_atras">Salones y Terraza</h3>
                       <hr class="hr_">
-                      <p class="room_service">Lidotel Centro Lido Caracas ofrece una terraza y cinco salas versátiles, cómodas y elegantes para cualquier tipo de eventos: Bodas, lanzamientos, showrooms, conferencias, reuniones de trabajo, congresos, entre otros. <a  style="color:rgb(191 131 3); cursor:pointer;"  @click="getViewSalones" >Leer Más...</a></p>
+                      <p class="room_service">Lidotel Centro Lido Caracas ofrece una terraza y cinco salas versátiles, cómodas y elegantes para cualquier tipo de eventos: Bodas, lanzamientos, showrooms, conferencias, reuniones de trabajo, congresos, entre otros. <a  href="#inicio_salon" style="color:rgb(191 131 3); cursor:pointer;"  @click="getViewSalones" >Leer Más...</a></p>
                     </div>
                 </div>
             </div>
@@ -73,6 +73,7 @@
             </div> -->
             <div class="services">
                 <div class="ih-item square effect13 left_to_right">
+                    
                     <div class="img"><img src="@/assets/img_fondo/gimnasio_gris.jpg" alt="img"></div>
                     <div>
                         <h2 class="home_1">Gimnasio</h2>
@@ -80,8 +81,9 @@
                     <div class="info">
                       <h3 class="room_service title_atras">Gimnasio</h3>
                       <hr class="hr_">
-                      <p class="room_service">Amplias instalaciones y modernos equipos para que pueda disfrutar de un momento de esparcimiento y relajación en uno de los gimnasios más exclusivos de la capital. Se encuentra ubicado en el PISO 8. <a  style="color:rgb(191 131 3); cursor:pointer;"  @click="getViewGimnasio" >Leer Más...</a></p>
+                      <p class="room_service">Amplias instalaciones y modernos equipos para que pueda disfrutar de un momento de esparcimiento y relajación en uno de los gimnasios más exclusivos de la capital. Se encuentra ubicado en el PISO 8. <a href="#inicio_gym" style="color:rgb(191 131 3); cursor:pointer;"  @click="getViewGimnasio" >Leer Más...</a></p>
                     </div>
+                    
                 </div>
             </div>
             <div class="services">
@@ -109,7 +111,7 @@
                       <h3 class="room_service title_atras">Lavandería</h3>
                       <hr class="hr_">
                       <p class="p_text">Puede contar con nuestro servicio de lavandería y despreocuparse por el aseo de sus prendas.
-                        <a style="color:rgb(191 131 3);cursor:pointer;"  @click="getViewLavanderia()" >Leer Más...</a></p>
+                        <a href="#inicio_lava" style="color:rgb(191 131 3);cursor:pointer;"  @click="getViewLavanderia()" >Leer Más...</a></p>
                     </div>
                 </div>
             </div>

@@ -1,58 +1,61 @@
 <template>
-    <div class="main-salones">   
-        <h1 class="salones">Salones y Terraza</h1> 
-        <h4 class="title">Ubicación: Terraza del piso 8 y Salones del piso 5.<br>
-            <p style="padding-top: 3%">Previa reservación con nuestro equipo de Alimentos y Bebidas.</p>
-        </h4>
-        <vueper-slides
-            class="no-shadow"
-            :visible-slides="1"
-            :slide-ratio="1 / 2"
-            :dragging-distance="40"
-            :gap="3"
-            :autoplay="true"
-            :arrows="false"
-        >
-        <vueper-slide v-for="(slide, i) in slides"
-            :key="i"
-            :image="slide.image"
-        />
-        </vueper-slides>
-        <div class="underline"></div>
-        <div>
-            <p class="p_text">LIDOTEL Centro Lido Caracas ofrece 1 terraza y 5 salas versátiles, cómodas y elegantes para cualquier tipo de eventos: Bodas, lanzamientos, showrooms, conferencias, reuniones de trabajo, congresos, entre otros. Todas las salas están equipadas con equipos de tecnología audiovisual y proporcionamos cualquier otro material de trabajo adicional que usted requiera. Además, nuestro Departamento de Alimentos y Bebidas ofrece una amplia variedad de menús para atender desayunos, almuerzos, cenas o coffee break.</p>
-            <p class="p_text">  <strong>Para mayor información comunicarse con nuestro departamento de Recepción a través de la extensión 10 o del WhatsApp 0424-2517807</strong></p>
-        </div>  
-        
+    <div>
+        <a name="inicio_salon"></a>
+        <div class="main-salones">   
+            <h1 class="salones">Salones y Terraza</h1> 
+            <h4 class="title">Ubicación: Terraza del piso 8 y Salones del piso 5.<br>
+                <p style="padding-top: 3%">Previa reservación con nuestro equipo de Alimentos y Bebidas.</p>
+            </h4>
+            <vueper-slides
+                class="no-shadow"
+                :visible-slides="1"
+                :slide-ratio="1 / 2"
+                :dragging-distance="40"
+                :gap="3"
+                :autoplay="true"
+                :arrows="false"
+            >
+            <vueper-slide v-for="(slide, i) in slides"
+                :key="i"
+                :image="slide.image"
+            />
+            </vueper-slides>
+            <div class="underline"></div>
+            <div>
+                <p class="p_text">LIDOTEL Centro Lido Caracas ofrece 1 terraza y 5 salas versátiles, cómodas y elegantes para cualquier tipo de eventos: Bodas, lanzamientos, showrooms, conferencias, reuniones de trabajo, congresos, entre otros. Todas las salas están equipadas con equipos de tecnología audiovisual y proporcionamos cualquier otro material de trabajo adicional que usted requiera. Además, nuestro Departamento de Alimentos y Bebidas ofrece una amplia variedad de menús para atender desayunos, almuerzos, cenas o coffee break.</p>
+                <p class="p_text">  <strong>Para mayor información comunicarse con nuestro departamento de Recepción a través de la extensión 10 o del WhatsApp 0424-2517807</strong></p>
+            </div>  
+            
 
-        <div class="salones-select">
-            <div class="mt-3 mb-3 col-4">
-                <label class="title">Salones</label>
-                    <b-form-select
-                    v-model="selected"
-                    :options="salones"
-                    class="mb-3 select"
-                    value-field="id"
-                    text-field="salon"
-                    @change="changeLivinRoom($event)"
-                    ></b-form-select>
-            </div>
-            <div class="row">
-                <div class="content-room">
-                    <div class="text-center">
-                        <h2 class="title-room">{{title}}</h2>
-                    </div>
-                    <div class="list_room">
-                        <p><strong>Dimensiones: </strong>{{dimensiones}}</p>
-                        <p><strong>Teatro: </strong>{{teatro}}</p>
-                        <p><strong>Tipo "U": </strong>{{tipo_u}}</p>
-                        <p><strong>Escuela: </strong>{{escuela}}</p>
-                        <p><strong>Banquetes: </strong>{{banquetes}}</p>
-                        <p><strong>Media Luna: </strong>{{medialuna}}</p>
-                        <p><strong>Cocktail: </strong>{{cocktail}}</p>
-                        <p><strong>Imperial: </strong>{{imperial}}</p>
-                    </div>
-                </div>          
+            <div class="salones-select">
+                <div class="mt-3 mb-3 col-4">
+                    <label class="title">Salones</label>
+                        <b-form-select
+                        v-model="selected"
+                        :options="salones"
+                        class="mb-3 select"
+                        value-field="id"
+                        text-field="salon"
+                        @change="changeLivinRoom($event)"
+                        ></b-form-select>
+                </div>
+                <div class="row">
+                    <div class="content-room">
+                        <div class="text-center">
+                            <h2 class="title-room">{{title}}</h2>
+                        </div>
+                        <div class="list_room">
+                            <p><strong>Dimensiones: </strong>{{dimensiones}}</p>
+                            <p><strong>Teatro: </strong>{{teatro}}</p>
+                            <p><strong>Tipo "U": </strong>{{tipo_u}}</p>
+                            <p><strong>Escuela: </strong>{{escuela}}</p>
+                            <p><strong>Banquetes: </strong>{{banquetes}}</p>
+                            <p><strong>Media Luna: </strong>{{medialuna}}</p>
+                            <p><strong>Cocktail: </strong>{{cocktail}}</p>
+                            <p><strong>Imperial: </strong>{{imperial}}</p>
+                        </div>
+                    </div>          
+                </div>
             </div>
         </div>
     </div>

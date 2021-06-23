@@ -1,44 +1,46 @@
 <template>
-	<div class="main-lav">
-		<h1 class="lav">Lavandería</h1>
-		<h2 class="title">HORARIO:<br>
-			<p>8:00 am a 4:00 pm</p>
-		</h2>
-		
-		<div class="underline"></div>
-		<div>
-			<p class="p_text">Puede contar con nuestro servicio de lavandería y despreocuparse por el aseo de sus prendas.
+	<div>
+		<a name="inicio_lava"></a>
+		<div class="main-lav">
+			<h1 class="lav">Lavandería</h1>
+			<h2 class="title">HORARIO:<br>
+				<p>8:00 am a 4:00 pm</p>
+			</h2>
 			
-			</p>
-			<p class="p_text">Nuestro horario de atención al cliente es de lunes a viernes, 
-			para lavandería de 8:00 am a 2:00 pm, y para tintorería de 8:00 am a 10:00 am.</p>
-		</div>
+			<div class="underline"></div>
+			<div>
+				<p class="p_text">Puede contar con nuestro servicio de lavandería y despreocuparse por el aseo de sus prendas.
+				
+				</p>
+				<p class="p_text">Nuestro horario de atención al cliente es de lunes a viernes, 
+				para lavandería de 8:00 am a 2:00 pm, y para tintorería de 8:00 am a 10:00 am.</p>
+			</div>
 			<div class="main-lavanderia mt-3">
 
-		<div class="btn_lavanderia">
-			<b-button  class="btn-action" :class="{ active: isActive }" @click="lavanderia()">Lavandería</b-button>
-			 <div   class="content-table" v-show="lavanderia_show">
-			    <b-table border="1"  :items="items" :fields="fields" class="mt-3 tdTable" outlined >
-			    </b-table>
-			 </div>
-		</div>
-		<div class="btn_lavanderia">
-			<b-button  class="btn-action" :class="{ active: isActive2 }" @click="tintoreria()">Tintorería</b-button>
-			<div   class="content-table " v-show="tintoreria_show">
-			    <b-table border="1"  :items="items2" :fields="fields2" class="mt-3 tdTable Dt" outlined >
-			    </b-table>
-			</div>
-		</div>
-		<div class="btn_lavanderia ">
-			<b-button  class="btn-action" :class="{ active: isActive3 }" @click="plancha()">Solo Plancha</b-button>
-			<div   class="content-table " v-show="plancha_show">
-			    <b-table border="1"  :items="items3" :fields="fields3" class="mt-3 tdTable Dt_2" outlined >
-			    </b-table>
+				<div class="btn_lavanderia">
+					<b-button  class="btn-action" :class="{ active: isActive }" @click="lavanderia()">Lavandería</b-button>
+					 <div   class="content-table" v-show="lavanderia_show">
+					    <b-table border="1"  :items="items" :fields="fields" class="mt-3 tdTable" outlined >
+					    </b-table>
+					 </div>
+				</div>
+				<div class="btn_lavanderia">
+					<b-button  class="btn-action" :class="{ active: isActive2 }" @click="tintoreria()">Tintorería</b-button>
+					<div   class="content-table " v-show="tintoreria_show">
+					    <b-table border="1"  :items="items2" :fields="fields2" class="mt-3 tdTable Dt" outlined >
+					    </b-table>
+					</div>
+				</div>
+				<div class="btn_lavanderia ">
+					<b-button  class="btn-action" :class="{ active: isActive3 }" @click="plancha()">Solo Plancha</b-button>
+					<div   class="content-table " v-show="plancha_show">
+					    <b-table border="1"  :items="items3" :fields="fields3" class="mt-3 tdTable Dt_2" outlined >
+					    </b-table>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
-	</div>
-
 </template>
 <script>
 	export default {
