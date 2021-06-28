@@ -198,7 +198,13 @@ import 'vueperslides/dist/vueperslides.css';
                     this.imperial    =  'N/A'
                     
                 }
+            },
+            scrollToTop() {
+                window.scrollTo(0,0);
             }
+        },
+        mounted () {
+            this.scrollToTop();
         }
     }
 </script>

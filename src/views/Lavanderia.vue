@@ -43,141 +43,143 @@
 <script>
 	export default {
 		data() {
-        return {
-        fields: ['PIEZA', 'PRECIO'],
-        items: [
-          { PRECIO: '$ '+ 2.5, PIEZA: 'CALCETINES'},
-          { PRECIO: '$ '+ 2.5, PIEZA: 'CALZONCILLOS'},
-          { PRECIO: '$ '+ 3,   PIEZA: 'CAMISA POLO' },
-		  { PRECIO: '$ '+ 4,   PIEZA: 'FRANELAS' },
-		  { PRECIO: '$ '+ 4,   PIEZA: 'PANTALONES CORTOS' },
-		  { PRECIO: '$ '+ 1,   PIEZA: 'PAÑUELOS' },
-		  { PRECIO: '$ '+ 4.5, PIEZA: 'CAMISA POLO BLANCA' },
-		  { PRECIO: '$ '+ 2,   PIEZA: 'PIJAMAS (2 piezas)' },
-		  { PRECIO: '$ '+ 2,   PIEZA: 'ROPA INTERIOR DE DAMA' },
-		  { PRECIO: '$ '+ 4,   PIEZA: 'CAMISA BLANCA' },
-		  { PRECIO: '$ '+ 2,   PIEZA: 'BATA' }
+	        return {
+		        fields: ['PIEZA', 'PRECIO'],
+		        items: [
+		          { PRECIO: '$ '+ 2.5, PIEZA: 'CALCETINES'},
+		          { PRECIO: '$ '+ 2.5, PIEZA: 'CALZONCILLOS'},
+		          { PRECIO: '$ '+ 3,   PIEZA: 'CAMISA POLO' },
+				  { PRECIO: '$ '+ 4,   PIEZA: 'FRANELAS' },
+				  { PRECIO: '$ '+ 4,   PIEZA: 'PANTALONES CORTOS' },
+				  { PRECIO: '$ '+ 1,   PIEZA: 'PAÑUELOS' },
+				  { PRECIO: '$ '+ 4.5, PIEZA: 'CAMISA POLO BLANCA' },
+				  { PRECIO: '$ '+ 2,   PIEZA: 'PIJAMAS (2 piezas)' },
+				  { PRECIO: '$ '+ 2,   PIEZA: 'ROPA INTERIOR DE DAMA' },
+				  { PRECIO: '$ '+ 4,   PIEZA: 'CAMISA BLANCA' },
+				  { PRECIO: '$ '+ 2,   PIEZA: 'BATA' }
 
-        ],
-        fields2: ['PIEZA', 'PRECIO'],
-        items2: [
- 
-          { PRECIO: '$ '+ 4,   PIEZA: 'BLUSA'},
-          { PRECIO: '$ '+ 4,   PIEZA: 'CAMISA'},
-		  { PRECIO: '$ '+ 5,   PIEZA: 'CHAQUETA'},
-		  { PRECIO: '$ '+ 3,   PIEZA: 'CORBATA'},
-		  { PRECIO: '$ '+ 4,   PIEZA: 'FALDA'},
-		  { PRECIO: '$ '+ 8,   PIEZA: 'VESTIDO (corto)'},
-		  { PRECIO: '$ '+ 4,   PIEZA: 'SWEATER'},
-		  { PRECIO: '$ '+ 7,   PIEZA: 'TRAJE (3 piezas)'},
-		  { PRECIO: '$ '+ 9,   PIEZA: 'TRAJE DE ETIQUETA'},
-		  { PRECIO: '$ '+ 11,  PIEZA: 'VESTIDO DE NOCHE'},
-		  { PRECIO: '$ '+ 8,   PIEZA: 'VESTIDO (largo)	'},
-		  { PRECIO: '$ '+ 3,   PIEZA: 'PANTALONES'},
-		  { PRECIO: '$ '+ 5,   PIEZA: 'CAMISA DE SEDA'},
-		  { PRECIO: '$ '+ 4,   PIEZA: 'GUAYABERA'},
-		  { PRECIO: '$ '+ 6,   PIEZA: 'BLUSA BLANCAS'},
-		  { PRECIO: '$ '+ 5,   PIEZA: 'CAMISA CON ALMIDON'},
-		  { PRECIO: '$ '+ 3,   PIEZA: 'CAMISA BLANCA'},
-		  { PRECIO: '$ '+ 5.5, PIEZA: 'CHAQUETA'},
-		  { PRECIO: '$ '+ 4.5, PIEZA: 'PANTALON'},
+		        ],
+		        fields2: ['PIEZA', 'PRECIO'],
+		        items2: [
+		 
+		          { PRECIO: '$ '+ 4,   PIEZA: 'BLUSA'},
+		          { PRECIO: '$ '+ 4,   PIEZA: 'CAMISA'},
+				  { PRECIO: '$ '+ 5,   PIEZA: 'CHAQUETA'},
+				  { PRECIO: '$ '+ 3,   PIEZA: 'CORBATA'},
+				  { PRECIO: '$ '+ 4,   PIEZA: 'FALDA'},
+				  { PRECIO: '$ '+ 8,   PIEZA: 'VESTIDO (corto)'},
+				  { PRECIO: '$ '+ 4,   PIEZA: 'SWEATER'},
+				  { PRECIO: '$ '+ 7,   PIEZA: 'TRAJE (3 piezas)'},
+				  { PRECIO: '$ '+ 9,   PIEZA: 'TRAJE DE ETIQUETA'},
+				  { PRECIO: '$ '+ 11,  PIEZA: 'VESTIDO DE NOCHE'},
+				  { PRECIO: '$ '+ 8,   PIEZA: 'VESTIDO (largo)	'},
+				  { PRECIO: '$ '+ 3,   PIEZA: 'PANTALONES'},
+				  { PRECIO: '$ '+ 5,   PIEZA: 'CAMISA DE SEDA'},
+				  { PRECIO: '$ '+ 4,   PIEZA: 'GUAYABERA'},
+				  { PRECIO: '$ '+ 6,   PIEZA: 'BLUSA BLANCAS'},
+				  { PRECIO: '$ '+ 5,   PIEZA: 'CAMISA CON ALMIDON'},
+				  { PRECIO: '$ '+ 3,   PIEZA: 'CAMISA BLANCA'},
+				  { PRECIO: '$ '+ 5.5, PIEZA: 'CHAQUETA'},
+				  { PRECIO: '$ '+ 4.5, PIEZA: 'PANTALON'},
 
-        ],
-        fields3: ['PIEZA', 'PRECIO'],
-        items3: [
-          { PRECIO: '$ '+ 2, PIEZA: 'BLUSA' },
-		  { PRECIO: '$ '+ 2, PIEZA: 'CAMISA' },
-		  { PRECIO: '$ '+ 2, PIEZA: 'CHAQUETA' },
-		  { PRECIO: '$ '+ 4, PIEZA: 'FALDA' },
-		  { PRECIO: '$ '+ 3, PIEZA: 'PANTALONES' },
-		  { PRECIO: '$ '+ 5, PIEZA: 'TRAJE' },
-		  { PRECIO: '$ '+ 8, PIEZA: 'TRAJE DE ETIQUETA' },
-		  { PRECIO: '$ '+ 7, PIEZA: 'VESTIDO DE NOCHE' },
-		  { PRECIO: '$ '+ 5, PIEZA: 'VESTIDO' }
-        ],
-        lavanderia_show:true,
-        tintoreria_show:false,
-        plancha_show:false,
-        change:0,
-        isActive:true,
-        isActive2:false,
-        isActive3:false
-        	
-        };
-    },
+		        ],
+		        fields3: ['PIEZA', 'PRECIO'],
+		        items3: [
+		          { PRECIO: '$ '+ 2, PIEZA: 'BLUSA' },
+				  { PRECIO: '$ '+ 2, PIEZA: 'CAMISA' },
+				  { PRECIO: '$ '+ 2, PIEZA: 'CHAQUETA' },
+				  { PRECIO: '$ '+ 4, PIEZA: 'FALDA' },
+				  { PRECIO: '$ '+ 3, PIEZA: 'PANTALONES' },
+				  { PRECIO: '$ '+ 5, PIEZA: 'TRAJE' },
+				  { PRECIO: '$ '+ 8, PIEZA: 'TRAJE DE ETIQUETA' },
+				  { PRECIO: '$ '+ 7, PIEZA: 'VESTIDO DE NOCHE' },
+				  { PRECIO: '$ '+ 5, PIEZA: 'VESTIDO' }
+		        ],
+		        lavanderia_show:true,
+		        tintoreria_show:false,
+		        plancha_show:false,
+		        change:0,
+		        isActive:true,
+		        isActive2:false,
+		        isActive3:false
+	        }
+    	},
         methods: {
-    
-    	lavanderia() {
-    		if(window.screen.width < 768){
-	    		this.lavanderia_show = true;
-	    		this.tintoreria_show = false;
-	    		this.plancha_show    = false;
-	    		this.isActive = true;
-	    		this.isActive2 = false;
-	    		this.isActive3 = false;
-	    	}
-    	},
-    	tintoreria() {
-    		if(window.screen.width < 768){
-	    		this.lavanderia_show = false;
-	    		this.tintoreria_show = true;
-	    		this.plancha_show    = false;
-	    		this.isActive  = false;
-	    		this.isActive2 = true;
-	    		this.isActive3 = false;
-	    	}
-    	},
-    	plancha() {
-    		if(window.screen.width < 768){
-				this.lavanderia_show = false;
-	    		this.tintoreria_show = false;
-	    		this.plancha_show    = true;
-	    		this.isActive  = false;
-	    		this.isActive2 = false;
-	    		this.isActive3 = true;
-	    	}
-    	},
+	    	lavanderia() {
+	    		if(window.screen.width < 768){
+		    		this.lavanderia_show = true;
+		    		this.tintoreria_show = false;
+		    		this.plancha_show    = false;
+		    		this.isActive = true;
+		    		this.isActive2 = false;
+		    		this.isActive3 = false;
+		    	}
+	    	},
+	    	tintoreria() {
+	    		if(window.screen.width < 768){
+		    		this.lavanderia_show = false;
+		    		this.tintoreria_show = true;
+		    		this.plancha_show    = false;
+		    		this.isActive  = false;
+		    		this.isActive2 = true;
+		    		this.isActive3 = false;
+		    	}
+	    	},
+	    	plancha() {
+	    		if(window.screen.width < 768){
+					this.lavanderia_show = false;
+		    		this.tintoreria_show = false;
+		    		this.plancha_show    = true;
+		    		this.isActive  = false;
+		    		this.isActive2 = false;
+		    		this.isActive3 = true;
+		    	}
+	    	},
 
-    	update() {
-    		if(window.screen.width > 768){
-    			this.lavanderia_show = true;
-    			this.tintoreria_show = true;
-    			this.plancha_show    = true;
-    			this.change = 0;
-    			this.isActive  = false;
-	    		this.isActive2 = false;
-	    		this.isActive3 = false;
-    		} 
-	  
+	    	update() {
+	    		if(window.screen.width > 768){
+	    			this.lavanderia_show = true;
+	    			this.tintoreria_show = true;
+	    			this.plancha_show    = true;
+	    			this.change = 0;
+	    			this.isActive  = false;
+		    		this.isActive2 = false;
+		    		this.isActive3 = false;
+	    		} 
+		  
+	    	},
+	    	isMobile() {
+	    		if (this.change == 0) {
+	    			this.lavanderia_show = true;
+	    			this.tintoreria_show = false;
+	    			this.plancha_show    = false;
+	    			this.change = 1;
+	    			this.isActive  = true;
+		    		this.isActive2 = false;
+		    		this.isActive3 = false;
+	    		}
+	    	},
+	    	scrollToTop() {
+	            window.scrollTo(0,0);
+	        }
     	},
-    	isMobile() {
-    		if (this.change == 0) {
-    			this.lavanderia_show = true;
-    			this.tintoreria_show = false;
-    			this.plancha_show    = false;
-    			this.change = 1;
-    			this.isActive  = true;
-	    		this.isActive2 = false;
-	    		this.isActive3 = false;
-    		}
-    		
-    		
-    	}
-    },
-    created () {
-		setInterval(() => {
-			if(window.screen.width > 768){
-				this.update();
-			} 
-		}, 100)
+	    created () {
+			setInterval(() => {
+				if(window.screen.width > 768){
+					this.update();
+				} 
+			}, 100)
 
-		setInterval(() => {
-			if(window.screen.width < 768){
-				this.isMobile();
-			} 
-		}, 100)
-	
-	}
+			setInterval(() => {
+				if(window.screen.width < 768){
+					this.isMobile();
+				} 
+			}, 100)
+		
+		},
+		mounted (){
+	        this.scrollToTop();
+	    }
 	}
 </script>
 <style scoped>

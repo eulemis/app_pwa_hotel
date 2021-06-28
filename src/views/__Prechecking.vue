@@ -1,11 +1,11 @@
 <template>
   <div class="prechekin">
-     <loading
-      :active.sync="isLoading"
-      :can-cancel="true"
-      :is-full-page="fullPage"
-    >
-    </loading> 
+<loading
+    :active.sync="isLoading"
+    :can-cancel="true"
+    :is-full-page="fullPage"
+>
+</loading>
    
         <div class="information_huesped">   
             <b-row>
@@ -36,19 +36,16 @@
             <div class="col-md-6 img_huesped">
                 <UploadImage></UploadImage>
             </div>
-            <div class="col-md-6 img_huesped" style="margin-top: -44px;">
-                 <div  class="text-center title_type_payment">
-                    <h3  style="font-size: 20px;"  class="font">Forma de Pago</h3>
-                 </div>
-                <div v-if="!receipofpayment" v-show="paymentform" class="checkbox-list">
-                  
-                    <b-form-radio class="font"    v-model="chk_method_payment" name="method_payment" value="Efectivo" switch size="lg">
+            <div class="col-md-6 img_huesped">
+                <div v-show="paymentform" class="checkbox-list">
+                    <h4 class="font">Seleccione su forma de Pago</h4>
+                    <b-form-radio class="font"   v-model="chk_method_payment" name="method_payment" value="Efectivo" switch size="lg">
                         Efectivo
                     </b-form-radio>
-                    <b-form-radio class="font"    v-model="chk_method_payment" name="method_payment" value="TDC" switch size="lg">
+                    <b-form-radio class="font"   v-model="chk_method_payment" name="method_payment" value="TDC" switch size="lg">
                         Tarjeta de Crédito y/o Débito
                     </b-form-radio>
-                    <b-form-radio class="font"    v-model="chk_method_payment" name="method_payment" value="Zelle" switch size="lg">
+                    <b-form-radio class="font"   v-model="chk_method_payment" name="method_payment" value="Zelle" switch size="lg">
                         Transferencias y/o Zelle
                     </b-form-radio><br>
                 <div class="text-center">
@@ -56,29 +53,9 @@
                         Confirmar
                     </button><br>
                 </div>
-                </div>
-                <div v-else class="checkbox-list">
-                    <div class="row resumen">
-                        <!--<h3 class="payment_title">Forma de Pago</h3>-->
-                        <h4 class="type_payment"><b-icon icon="check-circle" font-scale="1" style="cursor:pointer;color:#ae8000"></b-icon>&nbsp;&nbsp;{{ this.type_payment }}</h4>
-                        <h5 class="message_payment">Realizar el pago Directamente en el Hotel</h5>
-                    </div>
-                
                 </div> 
                 <UploadImageNew v-show="showcomponent"></UploadImageNew>
             </div>
-            <b-modal class="confirmedModal" ref="confirmpayment" size="lg" hide-footer hide-header>
-                <h5 class="text-center">Realizar el pago Directamente en el Hotel</h5>
-                <div class="text-center img_payment">
-                    <img  src="@/assets/payment_black.png" alt="Center image" width="80px">
-                </div>
-                <h5 class="text-center">Su Pre check In fue realizado con éxito.</h5>
-                <div class="buttonsFooter text-center">
-                <b-button class="btn-modal " @click="returnHome()">
-                  Finalizar
-                </b-button>
-              </div>
-            </b-modal>
         </div>
  
   </div>
@@ -111,10 +88,7 @@ export default {
         checked2: false,
         chk_method_payment: '',
         showcomponent:false,
-        paymentform:true,
-        value:'',
-        receipofpayment:'',
-        type_payment: ''
+        paymentform:true
   }
 
 
@@ -126,6 +100,16 @@ export default {
     optionPayment(id){
         this.showcomponent = true;
         this.paymentform   = false;
+    },
+    makeToast() {
+        this.$bvToast.toast('Realizar el pago Directamente en el Hotel', {
+            title: `Información`,
+            solid: true,
+            variant: 'warning',
+        })
+        this.checked  = false;
+        this.checked1 = false;
+        
     },
     saveMethodPayment(){     
         axios.post(`${ENV.BASE_URL}/save_method_payment`, {
@@ -145,12 +129,10 @@ export default {
     },
     
     confirmPayment() {     
-      
         if (this.chk_method_payment != ''){
             this.saveMethodPayment();
             if(this.chk_method_payment != 'Zelle') {
-                 //this.makeToast();
-                 this.$refs["confirmpayment"].show();
+                 this.makeToast();
              } else {
                 this.optionPayment()
              }
@@ -165,30 +147,15 @@ export default {
 
        
     },
-    showConfirmedModal() {
-      this.$refs["confirmpayment"].show();
-    },
-    hideConfirmedModal() {
-      this.$refs["confirmedModal"].hide();
-    },
-    returnHome() {
-        this.$router.go(-1);
-    },
-    back: function () {
-      this.$router.go(-1);
-    },
     async  getUser() {
         let response = await axios.get(this.BASE_URL+"/get-user-reservation"+'/'+this.user.id+'/'+this.reservation.id, {
               headers: {
               Authorization: 'Bearer ' + this.token 
             }
         })
-
+  
         this.imagePayment = response.data.image_pay;
-       
-        this.receipofpayment = (response.data.method_payment) ? 1 : 0;
-        this.type_payment = (response.data.method_payment) ? response.data.method_payment : '';
-        console.log("metodo de pago:  "+this.receipofpayment)
+        //console.log(this.imagenIdentity != 'null')
 
 /*        if(this.imagenIdentity != 'null')   {
             this.showcomponent = true;
@@ -207,37 +174,12 @@ export default {
 
 
 <style scoped>
-.resumen{
-    display: flex;
-    flex-direction: column;
-    padding: 7%;
-}
-.message_payment{
-    margin: auto;
-    border: 1px solid #ae8000;
-    padding: 19px;
-    margin-top: 8%;
-}
-.type_payment{
-    margin-left: 15px;
-}
-.img_payment{
-    /*margin-bottom: -22px;*/
-}
-.payment_title{
-    text-align: left;
-}
-.title_type_payment{
-    width: 87%;
-    display: flex;
-    justify-content: center;
-    margin-top: 16%;
-}
 .btn-primary {
     color: #fff;
     background-color: #A17E13;
     border-color: #A17E13;
 }
+
 .prechekin{
     background-image: url("~@/assets/Background.jpg");
     background-repeat: no-repeat;
@@ -257,8 +199,10 @@ div.content img {
 .inp {
   padding: 3px;
 }
+
+
 .input_{
-    border: 2px solid #a0a3a7;
+     border: 2px solid #a0a3a7;
     height: 45px;
 }
 .information_huesped{
@@ -266,35 +210,24 @@ div.content img {
     margin-top: 6%;
     font-family: "FonstFree";
 }
-.checkbox-list{
+  .checkbox-list{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    margin-top: 3%;
+    margin-top: 15%;
     margin-left: 9%;
     background-color: white;
     width: 70%;
     height: 456px;
     padding: 15px;
-   /* box-shadow: 4px 4px 10px 0px rgb(0 0 0 / 50%);*/
-}
-
-h3{
+    box-shadow: 4px 4px 10px 0px rgb(0 0 0 / 50%);
+  }
+  h3{
     text-align: center;
-}
+  }
   .font{
     font-family: "FonstFree";
   }
-  .btn-modal {
-  border: 1px solid #94700a;
-  background-color: #94700a;
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
-  min-width: 142px;
-  color: white;
-  font-family: "FonstFree";
-  text-transform: uppercase;
-  font-size: 80%;
-}
 
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
     .prechekin{
@@ -305,9 +238,9 @@ h3{
         margin-top: 18%;
         padding: 9px;
     }
-    .img_huesped{
+   /* .img_huesped{
         margin-top: -21%;
-    }
+    }*/
     h5{
         margin-top: 10%;
     }
@@ -317,33 +250,11 @@ h3{
         background-color: white;
         height: 456px;
         padding: 15px;
-/*        box-shadow: 0px 0px 1px 0px rgb(0 0 0 / 50%);*/
+        box-shadow: 0px 0px 1px 0px rgb(0 0 0 / 50%);
         margin: auto;
         width: 100%;
         margin-top: 15%;
     /*    border-radius: 28px;*/
-    }
-    .checkbox-list-next{
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        margin-top: 22%;
-        margin-left: 9%;
-        background-color: white;
-        width: 70%;
-        height: 456px;
-        padding: 15px;
-        box-shadow: 4px 4px 10px 0px rgb(0 0 0 / 50%);
-    }
-    .message_payment{
-        text-align: center;
-        width: 120%;
-    }
-    .resumen{
-        width: 92%;
-    }
-    .title_type_payment{
-        display: none;
     }
 }
 </style>

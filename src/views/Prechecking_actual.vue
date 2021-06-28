@@ -36,12 +36,9 @@
             <div class="col-md-6 img_huesped">
                 <UploadImage></UploadImage>
             </div>
-            <div class="col-md-6 img_huesped" style="margin-top: -44px;">
-                 <div  class="text-center title_type_payment">
-                    <h3  style="font-size: 20px;"  class="font">Forma de Pago</h3>
-                 </div>
-                <div v-if="!receipofpayment" v-show="paymentform" class="checkbox-list">
-                  
+            <div class="col-md-6 img_huesped">
+                <div v-if="receipofpayment == undefined" v-show="paymentform" class="checkbox-list">
+                    <h3 class="font">Seleccione su forma de Pago</h3>
                     <b-form-radio class="font"    v-model="chk_method_payment" name="method_payment" value="Efectivo" switch size="lg">
                         Efectivo
                     </b-form-radio>
@@ -58,19 +55,14 @@
                 </div>
                 </div>
                 <div v-else class="checkbox-list">
-                    <div class="row resumen">
-                        <!--<h3 class="payment_title">Forma de Pago</h3>-->
-                        <h4 class="type_payment"><b-icon icon="check-circle" font-scale="1" style="cursor:pointer;color:#ae8000"></b-icon>&nbsp;&nbsp;{{ this.type_payment }}</h4>
-                        <h5 class="message_payment">Realizar el pago Directamente en el Hotel</h5>
-                    </div>
-                
+                    <h1>Aqui</h1>
                 </div> 
                 <UploadImageNew v-show="showcomponent"></UploadImageNew>
             </div>
             <b-modal class="confirmedModal" ref="confirmpayment" size="lg" hide-footer hide-header>
                 <h5 class="text-center">Realizar el pago Directamente en el Hotel</h5>
                 <div class="text-center img_payment">
-                    <img  src="@/assets/payment_black.png" alt="Center image" width="80px">
+                    
                 </div>
                 <h5 class="text-center">Su Pre check In fue realizado con éxito.</h5>
                 <div class="buttonsFooter text-center">
@@ -113,8 +105,7 @@ export default {
         showcomponent:false,
         paymentform:true,
         value:'',
-        receipofpayment:'',
-        type_payment: ''
+        receipofpayment:''
   }
 
 
@@ -186,9 +177,8 @@ export default {
 
         this.imagePayment = response.data.image_pay;
        
-        this.receipofpayment = (response.data.method_payment) ? 1 : 0;
-        this.type_payment = (response.data.method_payment) ? response.data.method_payment : '';
-        console.log("metodo de pago:  "+this.receipofpayment)
+        this.receipofpayment = response.data.method_payment;
+        console.log(this.receipofpayment,this.user.id,this.reservation.id,response.data.method_payment,this.BASE_URL)
 
 /*        if(this.imagenIdentity != 'null')   {
             this.showcomponent = true;
@@ -207,37 +197,15 @@ export default {
 
 
 <style scoped>
-.resumen{
-    display: flex;
-    flex-direction: column;
-    padding: 7%;
-}
-.message_payment{
-    margin: auto;
-    border: 1px solid #ae8000;
-    padding: 19px;
-    margin-top: 8%;
-}
-.type_payment{
-    margin-left: 15px;
-}
 .img_payment{
-    /*margin-bottom: -22px;*/
-}
-.payment_title{
-    text-align: left;
-}
-.title_type_payment{
-    width: 87%;
-    display: flex;
-    justify-content: center;
-    margin-top: 16%;
+    margin-bottom: -22px;
 }
 .btn-primary {
     color: #fff;
     background-color: #A17E13;
     border-color: #A17E13;
 }
+
 .prechekin{
     background-image: url("~@/assets/Background.jpg");
     background-repeat: no-repeat;
@@ -257,6 +225,8 @@ div.content img {
 .inp {
   padding: 3px;
 }
+
+
 .input_{
     border: 2px solid #a0a3a7;
     height: 45px;
@@ -266,22 +236,21 @@ div.content img {
     margin-top: 6%;
     font-family: "FonstFree";
 }
-.checkbox-list{
+  .checkbox-list{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    margin-top: 3%;
+    margin-top: 22%;
     margin-left: 9%;
     background-color: white;
     width: 70%;
     height: 456px;
     padding: 15px;
-   /* box-shadow: 4px 4px 10px 0px rgb(0 0 0 / 50%);*/
-}
-
-h3{
+    box-shadow: 4px 4px 10px 0px rgb(0 0 0 / 50%);
+  }
+  h3{
     text-align: center;
-}
+  }
   .font{
     font-family: "FonstFree";
   }
@@ -317,33 +286,11 @@ h3{
         background-color: white;
         height: 456px;
         padding: 15px;
-/*        box-shadow: 0px 0px 1px 0px rgb(0 0 0 / 50%);*/
+        box-shadow: 0px 0px 1px 0px rgb(0 0 0 / 50%);
         margin: auto;
         width: 100%;
         margin-top: 15%;
     /*    border-radius: 28px;*/
-    }
-    .checkbox-list-next{
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        margin-top: 22%;
-        margin-left: 9%;
-        background-color: white;
-        width: 70%;
-        height: 456px;
-        padding: 15px;
-        box-shadow: 4px 4px 10px 0px rgb(0 0 0 / 50%);
-    }
-    .message_payment{
-        text-align: center;
-        width: 120%;
-    }
-    .resumen{
-        width: 92%;
-    }
-    .title_type_payment{
-        display: none;
     }
 }
 </style>

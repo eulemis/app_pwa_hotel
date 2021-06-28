@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-12" style="margin-top: -85px;">
           
-                <h5 class="font" v-show="optionPayment" style="text-align:center;margin-top:5%">{{ $t("title_upload") }}</h5><br>   
+                <!--<h5 class="font" v-show="optionPayment" style="text-align:center;margin-top:5%">{{ $t("title_upload") }}</h5><br>   -->
                 <div v-show="optionPayment">
                     <img   v-show="Fondo"    class="img_services" v-if="imagePayment"  v-bind:src="imagePayment" alt="">
                     <img   v-show="Fondo"    class="img_services" v-else src="@/assets/add_img_web.svg" alt="">
@@ -28,7 +28,7 @@
             <b-img class="img" center rounded v-bind:src="file" v-show="previewCamera"></b-img>
         </b-col>
     </b-row>
-    <b-row v-show="optionPayment" v-if="imagePayment"  class="justify-content-center mt-5">
+    <b-row v-show="optionPayment" v-if="imagePayment"  class="justify-content-center mt-3">
         <b-col style="text-align: center" cols="12" md="6" lg="6">
             <button style="width:60%" v-if="!previewCamera" class="btn btn-primary bt_submit" @click="turnOnCamera()">
                 {{ $t("foto") }} <b-icon icon="camera" font-scale="1"></b-icon>

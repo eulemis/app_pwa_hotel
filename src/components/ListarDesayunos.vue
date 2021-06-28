@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="listar_desayuno">
     <loading
       :active.sync="isLoading"
       :can-cancel="true"
@@ -54,7 +54,7 @@
             :key="index"
             cols="12"
           >
-            <h2 v-show="titlefood" class="text-capitalize">{{ food.title }}</h2>
+            <h2 v-show="titlefood" class="">{{ food.title }}</h2>
             <v-row>
               <v-col
                 v-for="(food, i) in food.items"
@@ -134,8 +134,8 @@
             :key="index"
             cols="12"
           >
-            <h2 v-show="titlefood" class="text-capitalize" v-if="food.title == 'menu infantil'" >Menú Infantil</h2>
-            <h2 v-show="titlefood" class="text-capitalize" v-else >{{ food.title }}</h2>
+            <h2 v-show="titlefood" class="" v-if="food.title == 'Menu Infantil'" >Menú Infantil</h2>
+            <h2 v-show="titlefood" class="" v-else >{{ food.title }}</h2>
             <v-row>
               <v-col
                 v-for="(food, i) in food.items"
@@ -330,9 +330,9 @@
       </div>
       <h5 class="text-center">{{ $t("order_in_room") }}</h5>
       <div class="buttonsFooter">
-        <b-button class="btn-modal" @click="hideConfirmedModal">{{
+        <!--b-button class="btn-modal" @click="hideConfirmedModal">{{
           $t("new_order")
-        }}</b-button>
+        }}</b-button-->
         <b-button class="btn-modal" @click="continueConfirmedModal">{{
           $t("continue")
         }}</b-button>
@@ -416,23 +416,20 @@ export default {
       loadingButton: false,
       
       desayunoCategories: [
-        { title: "desayunos", items: [] },
-        { title: "especialidades", items: [] },
-        { title: "bebidas", items: [] },
+        { title: "Desayunos", items: [] },
+        { title: "Especialidades", items: [] },
+        { title: "Bebidas", items: [] },
       ],
       /* {en tipo de comida almuerzo y cena( Principal, entradas, contornos, bebidas y postres)} */
       almuerzosCategories: [
-        { title: "entradas", items: [] },
-        { title: "ensaladas y sopas", items: [] },
-        { title: "pastas", items: [] },
-        { title: "carnes y aves", items: [] },
-        { title: "sandwiches y hamburguesas", items: [] },
-        { title: "menu infantil", items: [] },
-        { title: "postres", items: [] },
-        { title: "bebidas", items: [] },
-        
-        
-         
+        { title: "Entradas", items: [] },
+        { title: "Ensaladas y Sopas", items: [] },
+        { title: "Pastas", items: [] },
+        { title: "Carnes y Aves", items: [] },
+        { title: "Sandwiches y Hamburguesas", items: [] },
+        { title: "Menu Infantil", items: [] },
+        { title: "Postres", items: [] },
+        { title: "Bebidas", items: [] }, 
       ],
       titlefood:false,
     };
@@ -469,6 +466,9 @@ export default {
         return acc;
       }, 0);
       return totalPrice;
+    },
+    confirmar() {
+      return this.$store.getters.getSelectedFood = [];
     },
     paginationRows() {
       return 50;
@@ -562,7 +562,7 @@ export default {
           category: "desayuno",
         }).then((response) => {
           this.desayunoCategories = this.desayunoCategories.map((item) => {
-            if (item.title == "desayunos") {
+            if (item.title == "Desayunos") {
               let items = response.map((e) => ({
                 ...e,
                 quantity: 0,
@@ -583,7 +583,7 @@ export default {
           category: "bebidas",
         }).then((response) => {
           this.desayunoCategories = this.desayunoCategories.map((item) => {
-            if (item.title == "bebidas") {
+            if (item.title == "Bebidas") {
               let items = response.map((e) => ({
                 ...e,
                 quantity: 0,
@@ -605,7 +605,7 @@ export default {
           category: "especialidades",
         }).then((response) => {
           this.desayunoCategories = this.desayunoCategories.map((item) => {
-            if (item.title == "especialidades") {
+            if (item.title == "Especialidades") {
               let items = response.map((e) => ({
                 ...e,
                 quantity: 0,
@@ -630,7 +630,7 @@ export default {
           category: "pastas",
         }).then((response) => {
           this.almuerzosCategories = this.almuerzosCategories.map((item) => {
-            if (item.title == "pastas") {
+            if (item.title == "Pastas") {
               let items = response.map((e) => ({
                 ...e,
                 quantity: 0,
@@ -651,7 +651,7 @@ export default {
           category: "carnes",
         }).then((response) => {
           this.almuerzosCategories = this.almuerzosCategories.map((item) => {
-            if (item.title == "carnes y aves") {
+            if (item.title == "Carnes y Aves") {
               let items = response.map((e) => ({
                 ...e,
                 quantity: 0,
@@ -672,7 +672,7 @@ export default {
           category: "entradas",
         }).then((response) => {
           this.almuerzosCategories = this.almuerzosCategories.map((item) => {
-            if (item.title == "entradas") {
+            if (item.title == "Entradas") {
               let items = response.map((e) => ({
                 ...e,
                 quantity: 0,
@@ -690,10 +690,10 @@ export default {
         });
         this.getCagegoryFood({
           food: this.foodID,
-          category: "bebidas",
+          category: "ebidas",
         }).then((response) => {
           this.almuerzosCategories = this.almuerzosCategories.map((item) => {
-            if (item.title == "bebidas") {
+            if (item.title == "Bebidas") {
               let items = response.map((e) => ({
                 ...e,
                 quantity: 0,
@@ -714,7 +714,7 @@ export default {
           category: "postres",
         }).then((response) => {
           this.almuerzosCategories = this.almuerzosCategories.map((item) => {
-            if (item.title == "postres") {
+            if (item.title == "Postres") {
               let items = response.map((e) => ({
                 ...e,
                 quantity: 0,
@@ -736,7 +736,7 @@ export default {
           category: "ensaladas",
         }).then((response) => {
           this.almuerzosCategories = this.almuerzosCategories.map((item) => {
-            if (item.title == "ensaladas y sopas") {
+            if (item.title == "Ensaladas y Sopas") {
               let items = response.map((e) => ({
                 ...e,
                 quantity: 0,
@@ -757,7 +757,7 @@ export default {
           category: "infantil",
         }).then((response) => {
           this.almuerzosCategories = this.almuerzosCategories.map((item) => {
-            if (item.title == "menu infantil") {
+            if (item.title == "Menu Infantil") {
               let items = response.map((e) => ({
                 ...e,
                 quantity: 0,
@@ -778,7 +778,7 @@ export default {
           category: "sandwiches",
         }).then((response) => {
           this.almuerzosCategories = this.almuerzosCategories.map((item) => {
-            if (item.title == "sandwiches y hamburguesas") {
+            if (item.title == "Sandwiches y Hamburguesas") {
               let items = response.map((e) => ({
                 ...e,
                 quantity: 0,
@@ -856,8 +856,14 @@ export default {
         .then((response) => {
           if (response.status == 200) {
             this.isLoading = false;
+           
             this.hideModal();
             this.showConfirmedModal();
+            this.getSelectedFood.splice(0, this.getSelectedFood.length)
+            this.getSelectedFood = this.getSelectedFood;
+            this.getFoodItems.splice(0,   this.getFoodItems.length)
+            this.getFoodItems =   this.getFoodItems
+          
           }
         })
 
@@ -1550,6 +1556,9 @@ p {
 /* iPhone 4 */
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
   only screen and (min-device-pixel-ratio: 1.5) {
+}
+.listar_desayuno{
+  margin-bottom: 10%;
 }
 </style>
 
