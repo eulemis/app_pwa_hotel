@@ -186,6 +186,7 @@
 	.main-lav{
 		padding: 40px;
 		margin-top: 3%;
+		margin-bottom: 3%;
 	}
 	.title{
 		font-family: "HelveticaBold";
