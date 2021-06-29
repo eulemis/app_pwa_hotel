@@ -36,11 +36,11 @@
             <div class="col-md-6 img_huesped">
                 <UploadImage></UploadImage>
             </div>
-            <div class="col-md-6 img_huesped" style="margin-top: -44px;">
+            <div class="col-md-6 img_huesped title_pago">
                  <div  class="text-center title_type_payment">
-                    <h3  style="font-size: 20px;"  class="font">Forma de Pago</h3>
+                    <h3  style="font-size: 20px; font-weight: bold"  class="font" >Forma de Pago</h3>
                  </div>
-                <div v-if="!receipofpayment" v-show="paymentform" class="checkbox-list">
+              <div v-show="paymentform" class="checkbox-list">
                   
                     <b-form-radio class="font"    v-model="chk_method_payment" name="method_payment" value="Efectivo" switch size="lg">
                         Efectivo
@@ -57,11 +57,19 @@
                     </button><br>
                 </div>
                 </div>
-                <div v-else class="checkbox-list">
+                <div v-show="paymentresumen" class="checkbox-list">
                     <div class="row resumen">
-                        <!--<h3 class="payment_title">Forma de Pago</h3>-->
-                        <h4 class="type_payment"><b-icon icon="check-circle" font-scale="1" style="cursor:pointer;color:#ae8000"></b-icon>&nbsp;&nbsp;{{ this.type_payment }}</h4>
+                    <!--          <h3 class="payment_title">Forma de Pago</h3> -->
+                        <h4 class="type_payment"><b-icon icon="check-circle" font-scale="1" style="cursor:pointer;color:#ae8000"></b-icon>&nbsp;&nbsp;{{ type_payment }}</h4>
                         <h5 class="message_payment">Realizar el pago Directamente en el Hotel</h5>
+                    </div>
+                
+                </div> 
+                <div v-show="paymentresumenwithimage" class="checkbox-list-transfer">
+                    <div class="row resumen">                    
+                        <img  class="img_services_payment"  v-bind:src="imagePayment" alt="">
+                        <h4 class="type_payment_transfer"><b-icon icon="check-circle" font-scale="1" style="cursor:pointer;color:#ae8000"></b-icon>&nbsp;&nbsp;{{ type_payment }}</h4>
+                        <!--<h5 class="message_payment">Realizar el pago Directamente en el Hotelgggggggggggg</h5>-->
                     </div>
                 
                 </div> 
@@ -112,9 +120,12 @@ export default {
         chk_method_payment: '',
         showcomponent:false,
         paymentform:true,
+        paymentresumen:false,
+        paymentresumenwithimage:false,
         value:'',
         receipofpayment:'',
-        type_payment: ''
+        imagePayment:'',
+        type_payment:''
   }
 
 
@@ -178,22 +189,34 @@ export default {
       this.$router.go(-1);
     },
     async  getUser() {
+
         let response = await axios.get(this.BASE_URL+"/get-user-reservation"+'/'+this.user.id+'/'+this.reservation.id, {
               headers: {
               Authorization: 'Bearer ' + this.token 
             }
         })
 
-        this.imagePayment = response.data.image_pay;
-       
+        this.imagePayment    = response.data.image_pay;
         this.receipofpayment = (response.data.method_payment) ? 1 : 0;
-        this.type_payment = (response.data.method_payment) ? response.data.method_payment : '';
-        console.log("metodo de pago:  "+this.receipofpayment)
+        this.type_payment    = (response.data.method_payment) ? response.data.method_payment : '';
 
-/*        if(this.imagenIdentity != 'null')   {
-            this.showcomponent = true;
-            this.paymentform   = false;
-        }*/
+        if (this.receipofpayment == 1 ) {
+            if(this.type_payment == 'Zelle') {
+                this.type_payment += ' / Transferencia';
+                this.paymentresumen = false;
+                this.paymentform = false;
+                this.paymentresumenwithimage = true;
+            } else {
+                this.paymentresumen = true;
+                this.paymentform = false;
+                this.paymentresumenwithimage = false; 
+            }
+       
+        } else {
+            this.paymentresumen = false;
+            this.paymentform = true;
+            this.paymentresumenwithimage = false;
+        }
         
     }
     },
@@ -207,6 +230,11 @@ export default {
 
 
 <style scoped>
+.img_services_payment{
+    width:90%; 
+    margin:auto;
+    
+}
 .resumen{
     display: flex;
     flex-direction: column;
@@ -220,6 +248,10 @@ export default {
 }
 .type_payment{
     margin-left: 15px;
+}
+.type_payment_transfer{
+    margin: auto;
+    margin-top: 20px;
 }
 .img_payment{
     /*margin-bottom: -22px;*/
@@ -279,6 +311,17 @@ div.content img {
    /* box-shadow: 4px 4px 10px 0px rgb(0 0 0 / 50%);*/
 }
 
+.checkbox-list-transfer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-top: -2%;
+    margin-left: 9%;
+    /*  background-color: white;*/
+    width: 70%;
+    padding: 15px;
+}
+
 h3{
     text-align: center;
 }
@@ -294,6 +337,10 @@ h3{
   font-family: "FonstFree";
   text-transform: uppercase;
   font-size: 80%;
+}
+
+.title_pago{
+  margin-top: -44px;
 }
 
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
@@ -323,17 +370,27 @@ h3{
         margin-top: 15%;
     /*    border-radius: 28px;*/
     }
-    .checkbox-list-next{
+
+    .checkbox-list-transfer{
         display: flex;
         flex-direction: column;
         justify-content: space-around;
-        margin-top: 22%;
-        margin-left: 9%;
+        margin-top: 3%;
         background-color: white;
-        width: 70%;
-        height: 456px;
+        width: 100%;
         padding: 15px;
-        box-shadow: 4px 4px 10px 0px rgb(0 0 0 / 50%);
+        margin-left: 0% !important;
+    }
+
+    .img_services_payment{
+        width:100%; 
+        margin:auto;
+        margin-left: 8%;
+    }
+    .type_payment_transfer{
+       text-align: center;
+        margin-top: 20px;
+        font-size: 20px;
     }
     .message_payment{
         text-align: center;
@@ -341,9 +398,16 @@ h3{
     }
     .resumen{
         width: 92%;
+        margin-top: -15%;
     }
+
     .title_type_payment{
-        display: none;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-top: -4%;
     }
+   
+    
 }
 </style>

@@ -2,9 +2,9 @@
 <b-container class="container">
         <div class="row">
             <div class="col-md-12" style="margin-top: -71px;">
-                <h5 class="font" style="text-align:center;margin-top:5%">{{ $t("title_identity") }}</h5><br>  
+                <h5 class="font title_cedula" style="text-align:center; font-weight: bold">{{ $t("title_identity") }}</h5><br>  
                  <img  v-show="view"   class="img_services" v-if="imagenIdentity"  v-bind:src="imagenIdentity" alt="">
-                 <img style="margin-left:5%;" v-show="view"   class="img_services" v-else  src="@/assets/add_img_web.svg" alt="">
+                 <img  v-show="view"   class="img_services" v-else  src="@/assets/add_img_web.svg" alt="">
             </div>
         </div>
     <b-row class="justify-content-center">
@@ -273,6 +273,11 @@ export default {
     margin-left: 15%;
 
 }
+
+.title_cedula{
+    margin-top: 5%;
+}
+
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px){
    .img_services{
         width: 100%; 
@@ -280,5 +285,8 @@ export default {
         margin-left: 1% !important;
 
     } 
+    .title_cedula{
+        margin-top: 20%;
+    }
 }
 </style>

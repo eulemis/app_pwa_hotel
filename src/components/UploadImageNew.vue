@@ -72,6 +72,19 @@
         </b-col>
     </b-row>
 
+    <b-modal class="confirmedModal" ref="confirmpayment" size="lg" hide-footer hide-header>
+        <h5 class="text-center">Pre check in</h5>
+        <div class="text-center img_payment">
+            <img  src="@/assets/payment_black.png" alt="Center image" width="80px">
+        </div>
+        <h5 class="text-center">Su Pre check In fue realizado con éxito.</h5>
+        <div class="buttonsFooter text-center">
+        <b-button class="btn-modal " @click="returnHome()">
+          Finalizar
+        </b-button>
+      </div>
+    </b-modal>
+
 </b-container>
 </template>
 
@@ -106,6 +119,9 @@ export default {
         cameraComponent
     },
      methods: {
+        returnHome() {
+            this.$router.go(-1);
+        },
         takeNewPicture() {
             this.file =''
             this.base64File = false
@@ -167,16 +183,17 @@ export default {
                 .then((res) => {
 
                         if (res) {
-                        this.imagePayment = res.data.image_pay 
-                    }
+                            this.imagePayment = res.data.image_pay 
+                            this.$refs["confirmpayment"].show();
+                        }
                        
                     this.previewCamera = false
                     this.showDialog = false
                     this.$store.commit("uploadImage", false);
-                    this.$toast.default("Su Pre check In fue realizado con éxito.", {
+                    /*this.$toast.default("Su Pre check In fue realizado con éxito.", {
                         position: "top"
                       
-                    });
+                    });*/
                     this.imagePreview = "";
                     this.getUser();
 /*
