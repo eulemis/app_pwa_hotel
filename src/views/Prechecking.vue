@@ -58,14 +58,19 @@
                 </div>
                 </div>
                 <div v-show="paymentresumen" class="checkbox-list">
+                    <div class="edit_payment">
+                        <b-icon @click="habilitarPayment()" icon="pencil-square" font-scale="2" style="cursor:pointer;color:#ae8000"></b-icon>
+                    </div>
                     <div class="row resumen">
-                    <!--          <h3 class="payment_title">Forma de Pago</h3> -->
                         <h4 class="type_payment"><b-icon icon="check-circle" font-scale="1" style="cursor:pointer;color:#ae8000"></b-icon>&nbsp;&nbsp;{{ type_payment }}</h4>
                         <h5 class="message_payment">Realizar el pago Directamente en el Hotel</h5>
                     </div>
                 
                 </div> 
                 <div v-show="paymentresumenwithimage" class="checkbox-list-transfer">
+                    <div class="edit_payment">
+                        <b-icon @click="habilitarPayment()" icon="pencil-square" font-scale="2" style="cursor:pointer;color:#ae8000"></b-icon>
+                    </div>
                     <div class="row resumen">                    
                         <img  class="img_services_payment"  v-bind:src="imagePayment" alt="">
                         <h4 class="type_payment_transfer"><b-icon icon="check-circle" font-scale="1" style="cursor:pointer;color:#ae8000"></b-icon>&nbsp;&nbsp;{{ type_payment }}</h4>
@@ -218,6 +223,11 @@ export default {
             this.paymentresumenwithimage = false;
         }
         
+    },
+    habilitarPayment(){
+        this.paymentresumen = false;
+        this.paymentform = true;
+        this.paymentresumenwithimage = false; 
     }
     },
     mounted () {
@@ -230,6 +240,10 @@ export default {
 
 
 <style scoped>
+.edit_payment{
+    display: flex;
+    justify-content: flex-end;
+}
 .img_services_payment{
     width:90%; 
     margin:auto;
