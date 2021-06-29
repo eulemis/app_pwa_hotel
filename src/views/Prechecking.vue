@@ -83,7 +83,7 @@
             <b-modal class="confirmedModal" ref="confirmpayment" size="lg" hide-footer hide-header>
                 <h5 class="text-center">Realizar el pago Directamente en el Hotel</h5>
                 <div class="text-center img_payment">
-                    <img  src="@/assets/payment_black.png" alt="Center image" width="80px">
+                    <img  src="@/assets/payment-method.svg" alt="Center image" width="80px">
                 </div>
                 <h5 class="text-center">Su Pre check In fue realizado con éxito.</h5>
                 <div class="buttonsFooter text-center">

@@ -186,12 +186,12 @@
                         >
                       </div>
                     </div>
-                    <div>
+                    <!--<div>
                       <p class="title_food">Total:</p>
                       <p class="costo">
                         $ {{ getQuantity(food.id) * food.price }}
                       </p>
-                    </div>
+                    </div>-->
                   </div>
                   <div class="text-center">
                     <b-button
